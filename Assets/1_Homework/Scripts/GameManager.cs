@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public enum GameState
@@ -17,23 +15,34 @@ public class GameManager : MonoBehaviour, IStartCounterFinishListener
     private GameState _gameState;
     private List<IGameListener> _listeners = new();
     private List<IGameUpdateListener> _updateListeners = new();
+    private List<IGameLateUpdateListener> _lateUpdatesListeners = new();
     private StartCounter _startCounter;
 
     private void Awake() {
         var listeners = GetComponentsInChildren<IGameListener>();
         print(listeners.Length);
-       
-        foreach(IGameListener gameListener in listeners) {
+
+        foreach (IGameListener gameListener in listeners) {
             AddListener(gameListener);
         }
     }
 
     private void Update() {
-        var deltaTime = Time.deltaTime;
-
-        if(_gameState == GameState.Playing) {
+        if (_gameState == GameState.Playing) {
+            var deltaTime = Time.deltaTime;
+            
             foreach (var updateListener in _updateListeners) {
                 updateListener.OnUpdate(deltaTime);
+            }
+        }
+    }
+
+    private void LateUpdate() {
+        if(_gameState == GameState.Playing) {
+            var deltaTime = Time.deltaTime;
+
+            foreach(var updateListener in _lateUpdatesListeners) {
+                updateListener.OnLateUpdate(deltaTime);
             }
         }
     }
@@ -43,6 +52,10 @@ public class GameManager : MonoBehaviour, IStartCounterFinishListener
 
         if (gameListener is IGameUpdateListener gameUpdateListener) {
             _updateListeners.Add(gameUpdateListener);
+        }
+
+        if (gameListener is IGameLateUpdateListener gameLateUpdateListener) {
+            _lateUpdatesListeners.Add(gameLateUpdateListener);
         }
     }
 
@@ -59,7 +72,7 @@ public class GameManager : MonoBehaviour, IStartCounterFinishListener
     [ContextMenu("Start game")]
     private void StartGame() {
         foreach (var gameListener in _listeners) {
-            if(gameListener is IGameStartListener gameStartListener) {
+            if (gameListener is IGameStartListener gameStartListener) {
                 gameStartListener.OnGameStarted();
             }
         }
@@ -70,7 +83,7 @@ public class GameManager : MonoBehaviour, IStartCounterFinishListener
     [ContextMenu("Finish game")]
     private void FinishGame() {
         foreach (var gameListener in _listeners) {
-            if(gameListener is IGameFinishListener gameFinishListener) {
+            if (gameListener is IGameFinishListener gameFinishListener) {
                 gameFinishListener.OnGameFinish();
             }
         }

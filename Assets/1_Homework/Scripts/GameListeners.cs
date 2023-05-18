@@ -20,3 +20,8 @@ public interface IGameUpdateListener : IGameListener
 {
     void OnUpdate(float deltaTime);
 }
+
+public interface IGameLateUpdateListener : IGameListener
+{
+    void OnLateUpdate(float deltaTime);
+}
