@@ -11,7 +11,7 @@ public class PlayerInputObserver : MonoBehaviour, IGameStartListener, IGameFinis
         _inputController.OnInputSide += InputController_OnMovingSide;
     }
 
-    void IGameFinishListener.OnGameFinish() {
+    void IGameFinishListener.OnGameFinished() {
         _inputController.OnInputSide -= InputController_OnMovingSide;
     }
 

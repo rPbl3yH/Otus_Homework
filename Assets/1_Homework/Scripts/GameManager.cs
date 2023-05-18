@@ -11,6 +11,8 @@ public enum GameState
 
 public class GameManager : MonoBehaviour, IStartCounterFinishListener
 {
+    public GameState GameState => _gameState;
+
     [SerializeField] private GameUI _gameUI;
     private GameState _gameState;
     private List<IGameListener> _listeners = new();
@@ -84,9 +86,29 @@ public class GameManager : MonoBehaviour, IStartCounterFinishListener
     private void FinishGame() {
         foreach (var gameListener in _listeners) {
             if (gameListener is IGameFinishListener gameFinishListener) {
-                gameFinishListener.OnGameFinish();
+                gameFinishListener.OnGameFinished();
             }
         }
         _gameState = GameState.Finished;
+    }
+
+    public void PauseGame() {
+        foreach (var gameListener in _listeners) {
+            if(gameListener is IGamePauseListener gamePauseListener) {
+                gamePauseListener.OnGamePaused();
+            }
+        }
+
+        _gameState = GameState.Paused;
+    }
+
+    public void ResumeGame() {
+        foreach(var gameListener in _listeners) {
+            if(gameListener is IGameResumeListener gameResumeListener) {
+                gameResumeListener.OnGameResumed();
+            }
+        }
+
+        _gameState = GameState.Playing;
     }
 }

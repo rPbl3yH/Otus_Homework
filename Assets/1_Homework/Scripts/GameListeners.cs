@@ -13,7 +13,17 @@ public interface IGameStartListener : IGameListener
 
 public interface IGameFinishListener : IGameListener
 {
-    void OnGameFinish();
+    void OnGameFinished();
+}
+
+public interface IGamePauseListener : IGameListener
+{
+    void OnGamePaused();
+}
+
+public interface IGameResumeListener : IGameListener
+{
+    void OnGameResumed();
 }
 
 public interface IGameUpdateListener : IGameListener

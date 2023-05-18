@@ -504,6 +504,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 355125452}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &355125455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1032,7 +1044,6 @@ GameObject:
   - component: {fileID: 708821487}
   - component: {fileID: 708821490}
   - component: {fileID: 708821489}
-  - component: {fileID: 708821488}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1055,20 +1066,6 @@ Transform:
   m_Father: {fileID: 1395900906}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &708821488
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708821486}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &708821489
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1202,7 +1199,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1197998263}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1354097184}
+        m_TargetAssemblyTypeName: PauseButtonController, Assembly-CSharp
+        m_MethodName: PauseButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1197998263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,6 +1263,7 @@ GameObject:
   - component: {fileID: 1354097180}
   - component: {fileID: 1354097179}
   - component: {fileID: 1354097183}
+  - component: {fileID: 1354097184}
   m_Layer: 5
   m_Name: '[GAMEUI]'
   m_TagString: Untagged
@@ -1358,6 +1368,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _counterText: {fileID: 656840333}
+--- !u!114 &1354097184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354097178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c48393d7b2f2d96418e8fa1dff5203be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameManager: {fileID: 625770450}
 --- !u!1 &1395900905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,6 +1608,7 @@ GameObject:
   - component: {fileID: 1956434798}
   - component: {fileID: 1956434797}
   - component: {fileID: 1956434796}
+  - component: {fileID: 1956434799}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1647,3 +1671,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
+--- !u!136 &1956434799
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956434794}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
