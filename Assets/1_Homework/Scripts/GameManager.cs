@@ -1,12 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public enum GameState
 {
-    
+    Off,
+    Playing,
+    Paused,
+    Finished
+}
+
+public class GameManager : MonoBehaviour, IStartCounterFinishListener
+{
+    [SerializeField] private GameUI _gameUI;
+    private GameState _gameState;
     private List<IGameListener> _listeners = new();
     private List<IGameUpdateListener> _updateListeners = new();
+    private StartCounter _startCounter;
 
     private void Awake() {
         var listeners = GetComponentsInChildren<IGameListener>();
@@ -20,8 +31,10 @@ public class GameManager : MonoBehaviour
     private void Update() {
         var deltaTime = Time.deltaTime;
 
-        foreach (var updateListener in _updateListeners) {
-            updateListener.OnUpdate(deltaTime);
+        if(_gameState == GameState.Playing) {
+            foreach (var updateListener in _updateListeners) {
+                updateListener.OnUpdate(deltaTime);
+            }
         }
     }
 
@@ -33,21 +46,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StartLevel() {
+        StartCounterListener startCounterObserver = new StartCounterListener(this, _gameUI.GetCounterText());
+        _startCounter = new StartCounter(startCounterObserver);
+        _startCounter.StartCount();
+    }
+
+    public void OnStartCountFinished() {
+        StartGame();
+    }
+
     [ContextMenu("Start game")]
-    public void StartGame() {
+    private void StartGame() {
         foreach (var gameListener in _listeners) {
             if(gameListener is IGameStartListener gameStartListener) {
                 gameStartListener.OnGameStarted();
             }
         }
+
+        _gameState = GameState.Playing;
     }
 
     [ContextMenu("Finish game")]
-    public void FinishGame() {
+    private void FinishGame() {
         foreach (var gameListener in _listeners) {
             if(gameListener is IGameFinishListener gameFinishListener) {
                 gameFinishListener.OnGameFinish();
             }
         }
+        _gameState = GameState.Finished;
     }
 }
