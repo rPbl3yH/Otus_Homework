@@ -6,11 +6,6 @@ public interface IGameListener
 {
 }
 
-public interface IGameInitListener : IGameListener
-{
-    void OnGameInit();
-}
-
 public interface IGameStartListener : IGameListener
 {
     void OnGameStarted();

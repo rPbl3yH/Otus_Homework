@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     private List<IGameListener> _listeners = new();
     private List<IGameUpdateListener> _updateListeners = new();
     private List<IGameLateUpdateListener> _lateUpdatesListeners = new();
-    private ObstacleHitObservable _obstacleHitObservable;
 
     private void Update() {
         if (_gameState == GameState.Playing) {
@@ -57,25 +56,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void InitGame() {
-        foreach (var gameListener in _listeners) {
-            if(gameListener is IGameInitListener gameInitListener) {
-                gameInitListener.OnGameInit();
-            }
-        }
-    }
-
     [ContextMenu("Start game")]
     public void StartGame() {
         if(_gameState == GameState.Playing || _gameState == GameState.Paused) {
             return;
-        }
-
-        _obstacleHitObservable = new ObstacleHitObservable(this);
-        var obstacles = FindObjectsOfType<Obstacle>();
-
-        foreach (var obstacle in obstacles) {
-            obstacle.Init(_obstacleHitObservable);
         }
 
         foreach (var gameListener in _listeners) {
