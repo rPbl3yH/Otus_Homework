@@ -9,26 +9,15 @@ public enum GameState
     Finished
 }
 
-public class GameManager : MonoBehaviour, IStartCounterFinishListener
+public class GameManager : MonoBehaviour
 {
     public GameState GameState => _gameState;
-
-    [SerializeField] private GameUI _gameUI;
 
     private GameState _gameState;
     private List<IGameListener> _listeners = new();
     private List<IGameUpdateListener> _updateListeners = new();
     private List<IGameLateUpdateListener> _lateUpdatesListeners = new();
-    private StartCounter _startCounter;
     private ObstacleHitObservable _obstacleHitObservable;
-
-    private void Awake() {
-        var listeners = GetComponentsInChildren<IGameListener>();
-
-        foreach (IGameListener gameListener in listeners) {
-            AddListener(gameListener);
-        }
-    }
 
     private void Update() {
         if (_gameState == GameState.Playing) {
@@ -50,6 +39,12 @@ public class GameManager : MonoBehaviour, IStartCounterFinishListener
         }
     }
 
+    public void AddListeners(IGameListener[] gameListeners) {
+        foreach (var gameListener in gameListeners) {
+            AddListener(gameListener);
+        }
+    }
+
     public void AddListener(IGameListener gameListener) {
         _listeners.Add(gameListener);
 
@@ -62,18 +57,16 @@ public class GameManager : MonoBehaviour, IStartCounterFinishListener
         }
     }
 
-    public void StartLevel() {
-        StartCounterListener startCounterObserver = new StartCounterListener(this, _gameUI.GetCounterText());
-        _startCounter = new StartCounter(startCounterObserver);
-        _startCounter.StartCount();
-    }
-
-    public void OnStartCountFinished() {
-        StartGame();
+    public void InitGame() {
+        foreach (var gameListener in _listeners) {
+            if(gameListener is IGameInitListener gameInitListener) {
+                gameInitListener.OnGameInit();
+            }
+        }
     }
 
     [ContextMenu("Start game")]
-    private void StartGame() {
+    public void StartGame() {
         if(_gameState == GameState.Playing || _gameState == GameState.Paused) {
             return;
         }
