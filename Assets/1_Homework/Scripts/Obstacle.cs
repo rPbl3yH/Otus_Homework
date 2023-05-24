@@ -22,7 +22,7 @@ public class Obstacle : MonoBehaviour, IGameStartListener, IGamePauseListener, I
 
     private void OnTriggerEnter(Collider other) {
         if (other.attachedRigidbody) {
-            if (other.attachedRigidbody.GetComponent<PlayerMoveController>()) {
+            if (other.attachedRigidbody.GetComponent<MoveComponent>()) {
                 _hitObservable.OnHit();
             }
         }
