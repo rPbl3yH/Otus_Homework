@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class MoveComponent : MonoBehaviour, IGameUpdateListener
+public class MoveComponent : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _widthSide = 2f;
 
-    public void Move(Vector3 direction) {
-        transform.position += direction * _widthSide;
+    public void MoveHorizonral(float dx) {
+        transform.position += new Vector3(dx, 0f, 0f) * _widthSide;
     }
 
-    void IGameUpdateListener.OnUpdate(float deltaTime) {
+    public void MoveForward(float deltaTime) {
         transform.position += _speed * Vector3.forward * deltaTime;
     }
 }

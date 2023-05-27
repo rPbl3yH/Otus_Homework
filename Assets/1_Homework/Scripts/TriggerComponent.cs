@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class CharacterTriggerTracker : MonoBehaviour
+public class TriggerComponent : MonoBehaviour
 {
     public event Action<Collider> OnTriggerEntered;
 

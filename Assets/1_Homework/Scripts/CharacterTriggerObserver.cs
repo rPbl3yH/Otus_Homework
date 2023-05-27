@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-public class CharacterTriggerController : MonoBehaviour, IGameStartListener
+public class CharacterTriggerObserver : MonoBehaviour, IGameStartListener
 {
     [SerializeField] private GameManager _gameManager;
-    [SerializeField] private CharacterTriggerTracker _triggerTracker;
+    [SerializeField] private TriggerComponent _triggerTracker;
 
     public void OnGameStarted() {
         _triggerTracker.OnTriggerEntered += OnTriggerEntered;

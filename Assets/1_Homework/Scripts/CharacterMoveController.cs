@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 
-public class PlayerMoveController : MonoBehaviour, IGameStartListener, IGameFinishListener
+public class CharacterMoveController : MonoBehaviour, IGameStartListener, IGameFinishListener, IGameUpdateListener
 {
     [SerializeField] private MoveComponent _moveController;
-    [SerializeField] private MoveInput _inputController;
+    [SerializeField] private MoveInput _moveInput;
     private RoadSide _roadSide;
 
     void IGameStartListener.OnGameStarted() {
         _roadSide = RoadSide.Middle;
-        _inputController.OnMove += InputController_OnMovingSide;
+        _moveInput.OnMove += OnMoveHorizontal;
     }
 
     void IGameFinishListener.OnGameFinished() {
-        _inputController.OnMove -= InputController_OnMovingSide;
+        _moveInput.OnMove -= OnMoveHorizontal;
     }
 
-    private void InputController_OnMovingSide(InputDirection inputDirection) {
+    void IGameUpdateListener.OnUpdate(float deltaTime) {
+        _moveController.MoveForward(deltaTime);
+    }
+
+    private void OnMoveHorizontal(InputDirection inputDirection) {
         if(inputDirection == InputDirection.Left && _roadSide == RoadSide.Left) {
             return;
         }
@@ -26,8 +30,8 @@ public class PlayerMoveController : MonoBehaviour, IGameStartListener, IGameFini
 
         UpdateRoadSide(inputDirection);
 
-        var direction = inputDirection == InputDirection.Left ? Vector3.left : Vector3.right;
-        _moveController.Move(direction);
+        var dx = inputDirection == InputDirection.Left ? Vector3.left.x : Vector3.right.x;
+        _moveController.MoveHorizonral(dx);
     }
 
     private void UpdateRoadSide(InputDirection inputDirection) {

@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveController: {fileID: 1956434798}
-  _inputController: {fileID: 625770452}
+  _moveInput: {fileID: 625770452}
 --- !u!114 &625770452
 MonoBehaviour:
   m_ObjectHideFlags: 0
