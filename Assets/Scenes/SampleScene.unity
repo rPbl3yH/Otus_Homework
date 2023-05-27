@@ -1012,6 +1012,7 @@ GameObject:
   - component: {fileID: 625770449}
   - component: {fileID: 625770450}
   - component: {fileID: 625770452}
+  - component: {fileID: 625770456}
   - component: {fileID: 625770451}
   - component: {fileID: 625770453}
   - component: {fileID: 625770454}
@@ -1065,7 +1066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ba42fadbfc3c04a85c2491280ce454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveController: {fileID: 1956434798}
+  _moveComponent: {fileID: 1956434798}
   _moveInput: {fileID: 625770452}
 --- !u!114 &625770452
 MonoBehaviour:
@@ -1119,6 +1120,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 625770450}
   _triggerTracker: {fileID: 1956434801}
+--- !u!114 &625770456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625770448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1b34e2406e3c10419c7821404c437cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveComponent: {fileID: 1956434798}
 --- !u!1 &656840331
 GameObject:
   m_ObjectHideFlags: 0
