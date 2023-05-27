@@ -6,15 +6,15 @@ namespace ShootEmUp
     {
         public Vector2 Position
         {
-            get { return this.firePoint.position; }
+            get { return _firePoint.position; }
         }
 
         public Quaternion Rotation
         {
-            get { return this.firePoint.rotation; }
+            get { return _firePoint.rotation; }
         }
 
         [SerializeField]
-        private Transform firePoint;
+        private Transform _firePoint;
     }
 }
