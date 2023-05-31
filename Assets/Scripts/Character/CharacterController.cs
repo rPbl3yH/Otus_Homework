@@ -10,39 +10,46 @@ namespace ShootEmUp
         [SerializeField] private BulletConfig _bulletConfig;
         
         public bool _fireRequired;
+        private HitPointsComponent _hitPointsComponent;
+
+        private void Awake() {
+            _hitPointsComponent = character.GetComponent<HitPointsComponent>();
+        }
 
         private void OnEnable()
         {
-            this.character.GetComponent<HitPointsComponent>().OnDeath += this.OnCharacterDeath;
+            _hitPointsComponent.OnDeath += OnCharacterDeath;
         }
 
         private void OnDisable()
         {
-            this.character.GetComponent<HitPointsComponent>().OnDeath -= this.OnCharacterDeath;
+            _hitPointsComponent.OnDeath -= OnCharacterDeath;
         }
-
-        private void OnCharacterDeath(GameObject _) => this.gameManager.FinishGame();
 
         private void FixedUpdate()
         {
-            if (this._fireRequired)
+            if (_fireRequired)
             {
-                this.OnFlyBullet();
-                this._fireRequired = false;
+                Fire();
+                _fireRequired = false;
             }
         }
 
-        private void OnFlyBullet()
+        private void OnCharacterDeath(GameObject _) {
+            gameManager.FinishGame();
+        }
+
+        private void Fire()
         {
-            var weapon = this.character.GetComponent<WeaponComponent>();
+            var weapon = character.GetComponent<WeaponComponent>();
             _bulletService.CreateBullet(new BulletData
             {
                 IsPlayer = true,
-                PhysicsLayer = (int) this._bulletConfig.PhysicsLayer,
-                Color = this._bulletConfig.Color,
-                Damage = this._bulletConfig.Damage,
+                PhysicsLayer = (int) _bulletConfig.PhysicsLayer,
+                Color = _bulletConfig.Color,
+                Damage = _bulletConfig.Damage,
                 Position = weapon.Position,
-                Velocity = weapon.Rotation * Vector3.up * this._bulletConfig.Speed
+                Velocity = weapon.Rotation * Vector3.up * _bulletConfig.Speed
             });
         }
     }

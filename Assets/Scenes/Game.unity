@@ -291,11 +291,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902c94723bf45fe43b0a6b43d6db17d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialCount: 50
+  _initialCount: 50
   _bulletFactory: {fileID: 363245578}
-  worldTransform: {fileID: 1683128698}
-  container: {fileID: 1831741369}
-  levelBounds: {fileID: 2572952653776768186}
+  _worldTransform: {fileID: 1683128698}
+  _container: {fileID: 1831741369}
+  _levelBounds: {fileID: 2572952653776768186}
 --- !u!114 &363245580
 MonoBehaviour:
   m_ObjectHideFlags: 0
