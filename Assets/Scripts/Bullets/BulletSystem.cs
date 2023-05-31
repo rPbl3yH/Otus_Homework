@@ -46,6 +46,7 @@ namespace ShootEmUp
             if (this.m_bulletPool.TryDequeue(out var bullet))
             {
                 bullet.transform.SetParent(this.worldTransform);
+                bullet = _bulletFactory.Create(bulletData, worldTransform);
             }
             else
             {

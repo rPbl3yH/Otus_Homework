@@ -11,7 +11,7 @@ namespace ShootEmUp
             return bullet;
         }
 
-        public Bullet Create(in BulletData bulletData, Transform parentPoint) {
+        public Bullet Create(BulletData bulletData, Transform parentPoint) {
             var bullet = Instantiate(_bulletPrefab, parentPoint);
             bullet.SetColor(bulletData.Color);
             bullet.SetDamage(bulletData.Damage);
