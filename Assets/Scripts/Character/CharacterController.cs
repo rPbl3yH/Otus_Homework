@@ -6,7 +6,7 @@ namespace ShootEmUp
     {
         [SerializeField] private GameObject character; 
         [SerializeField] private GameManager gameManager;
-        [SerializeField] private BulletObserver _bulletSystem;
+        [SerializeField] private BulletService _bulletService;
         [SerializeField] private BulletConfig _bulletConfig;
         
         public bool _fireRequired;
@@ -35,7 +35,7 @@ namespace ShootEmUp
         private void OnFlyBullet()
         {
             var weapon = this.character.GetComponent<WeaponComponent>();
-            _bulletSystem.CreateBullet(new BulletData
+            _bulletService.CreateBullet(new BulletData
             {
                 IsPlayer = true,
                 PhysicsLayer = (int) this._bulletConfig.PhysicsLayer,

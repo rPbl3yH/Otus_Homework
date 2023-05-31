@@ -10,7 +10,7 @@ namespace ShootEmUp
         private EnemyPool _enemyPool;
 
         [SerializeField]
-        private BulletObserver _bulletSystem;
+        private BulletService _bulletService;
         
         private readonly HashSet<GameObject> m_activeEnemies = new();
 
@@ -44,7 +44,7 @@ namespace ShootEmUp
 
         private void OnFire(GameObject enemy, Vector2 position, Vector2 direction)
         {
-            _bulletSystem.CreateBullet(new BulletData
+            _bulletService.CreateBullet(new BulletData
             {
                 IsPlayer = false,
                 PhysicsLayer = (int) PhysicsLayer.ENEMY,
