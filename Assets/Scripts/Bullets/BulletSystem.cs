@@ -9,19 +9,19 @@ namespace ShootEmUp
         private int initialCount = 50;
         
         [SerializeField] private Transform container;
-        [SerializeField] private Bullet prefab;
         [SerializeField] private Transform worldTransform;
         [SerializeField] private LevelBounds levelBounds;
+        [SerializeField] private BulletFactory _bulletFactory;
 
         private readonly Queue<Bullet> m_bulletPool = new();
         private readonly HashSet<Bullet> m_activeBullets = new();
         private readonly List<Bullet> m_cache = new();
         
-        private void Awake()
+        private void Awake() //pool logic
         {
             for (var i = 0; i < this.initialCount; i++)
             {
-                var bullet = Instantiate(this.prefab, this.container);
+                var bullet = _bulletFactory.Create(worldTransform); 
                 this.m_bulletPool.Enqueue(bullet);
             }
         }
@@ -41,7 +41,7 @@ namespace ShootEmUp
             }
         }
 
-        public void FlyBulletByArgs(Args args)
+        public void CreateBullet(BulletData bulletData)
         {
             if (this.m_bulletPool.TryDequeue(out var bullet))
             {
@@ -49,15 +49,8 @@ namespace ShootEmUp
             }
             else
             {
-                bullet = Instantiate(this.prefab, this.worldTransform);
+                bullet = _bulletFactory.Create(bulletData, worldTransform);
             }
-
-            bullet.SetPosition(args.position);
-            bullet.SetColor(args.color);
-            bullet.SetPhysicsLayer(args.physicsLayer);
-            bullet.damage = args.damage;
-            bullet.isPlayer = args.isPlayer;
-            bullet.SetVelocity(args.velocity);
             
             if (this.m_activeBullets.Add(bullet))
             {
@@ -80,15 +73,15 @@ namespace ShootEmUp
                 this.m_bulletPool.Enqueue(bullet);
             }
         }
-        
-        public struct Args
-        {
-            public Vector2 position;
-            public Vector2 velocity;
-            public Color color;
-            public int physicsLayer;
-            public int damage;
-            public bool isPlayer;
-        }
+    }
+    
+    public struct BulletData
+    {
+        public Vector2 Position;
+        public Vector2 Velocity;
+        public Color Color;
+        public int PhysicsLayer;
+        public int Damage;
+        public bool IsPlayer;
     }
 }
