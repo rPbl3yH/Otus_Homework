@@ -6,7 +6,7 @@ namespace ShootEmUp
     {
         [SerializeField] private GameObject character; 
         [SerializeField] private GameManager gameManager;
-        [SerializeField] private BulletSystem _bulletSystem;
+        [SerializeField] private BulletObserver _bulletSystem;
         [SerializeField] private BulletConfig _bulletConfig;
         
         public bool _fireRequired;

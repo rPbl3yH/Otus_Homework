@@ -10,7 +10,7 @@ namespace ShootEmUp
         private EnemyPool _enemyPool;
 
         [SerializeField]
-        private BulletSystem _bulletSystem;
+        private BulletObserver _bulletSystem;
         
         private readonly HashSet<GameObject> m_activeEnemies = new();
 
