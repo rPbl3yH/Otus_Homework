@@ -8,43 +8,42 @@ namespace ShootEmUp
         public event Action<Bullet> OnBulletAdded;
         public event Action<Bullet> OnBulletRemoved;
 
-        [SerializeField] private int initialCount = 50;
+        [SerializeField] private int _initialCount = 50;
         [SerializeField] private BulletFactory _bulletFactory;
-        [SerializeField] private Transform worldTransform;
-        [SerializeField] private Transform container;
-        [SerializeField] private LevelBounds levelBounds;
+        [SerializeField] private Transform _worldTransform;
+        [SerializeField] private Transform _container;
+        [SerializeField] private LevelBounds _levelBounds;
 
-
-        private readonly Queue<Bullet> m_bulletPool = new();
-        private readonly HashSet<Bullet> m_activeBullets = new();
-        private readonly List<Bullet> m_cache = new();
+        private readonly Queue<Bullet> _bulletPool = new();
+        private readonly HashSet<Bullet> _activeBullets = new();
+        private readonly List<Bullet> _bulletCache = new();
 
         private void Awake() {
-            for (var i = 0; i < this.initialCount; i++) {
-                var bullet = _bulletFactory.Create(worldTransform);
-                this.m_bulletPool.Enqueue(bullet);
+            for (var i = 0; i < _initialCount; i++) {
+                var bullet = _bulletFactory.Create(_worldTransform);
+                _bulletPool.Enqueue(bullet);
             }
         }
 
         private void FixedUpdate() {
-            this.m_cache.Clear();
-            this.m_cache.AddRange(this.m_activeBullets);
+            _bulletCache.Clear();
+            _bulletCache.AddRange(_activeBullets);
 
-            for (int i = 0, count = this.m_cache.Count; i < count; i++) {
-                var bullet = this.m_cache[i];
-                if (!this.levelBounds.InBounds(bullet.transform.position)) {
+            for (int i = 0, count = _bulletCache.Count; i < count; i++) {
+                var bullet = _bulletCache[i];
+                if (!_levelBounds.InBounds(bullet.transform.position)) {
                     Despawn(bullet);
                 }
             }
         }
 
         public Bullet Spawn(BulletData bulletData) {
-            if (this.m_bulletPool.TryDequeue(out var bullet)) {
-                bullet.transform.SetParent(this.worldTransform);
+            if (_bulletPool.TryDequeue(out var bullet)) {
+                bullet.transform.SetParent(_worldTransform);
                 _bulletFactory.SetupBullet(bullet, bulletData);
             }
             else {
-                bullet = _bulletFactory.Create(bulletData, worldTransform);
+                bullet = _bulletFactory.Create(bulletData, _worldTransform);
             }
 
             AddToActiveBullets(bullet);
@@ -53,15 +52,15 @@ namespace ShootEmUp
         }
 
         public void Despawn(Bullet bullet) {
-            if (this.m_activeBullets.Remove(bullet)) {
-                bullet.transform.SetParent(this.container);
-                this.m_bulletPool.Enqueue(bullet);
+            if (_activeBullets.Remove(bullet)) {
+                bullet.transform.SetParent(_container);
+                _bulletPool.Enqueue(bullet);
                 OnBulletRemoved?.Invoke(bullet);
             }
         }
 
         private void AddToActiveBullets(Bullet bullet) {
-            if (m_activeBullets.Add(bullet)) {
+            if (_activeBullets.Add(bullet)) {
                 OnBulletAdded?.Invoke(bullet);
             }
         }
