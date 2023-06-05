@@ -4,7 +4,7 @@ namespace ShootEmUp
 {
     public sealed class CharacterController : MonoBehaviour
     {
-        [SerializeField] private GameObject _character; 
+        [SerializeField] private Character _character; 
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private BulletService _bulletService;
         [SerializeField] private BulletConfig _bulletConfig;
@@ -14,8 +14,8 @@ namespace ShootEmUp
         private WeaponComponent _weaponComponent;
 
         private void Awake() {
-            _hitPointsComponent = _character.GetComponent<HitPointsComponent>();
-            _weaponComponent = _character.GetComponent<WeaponComponent>();
+            _hitPointsComponent = _character.HitPointsComponent;
+            _weaponComponent = _character.WeaponComponent;
         }
 
         private void OnEnable()

@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class BulletPool : MonoBehaviour {
+
+	public sealed class BulletPool : MonoBehaviour {
         public event Action<Bullet> OnBulletAdded;
         public event Action<Bullet> OnBulletRemoved;
 
@@ -12,28 +13,15 @@ namespace ShootEmUp
         [SerializeField] private BulletFactory _bulletFactory;
         [SerializeField] private Transform _worldTransform;
         [SerializeField] private Transform _container;
-        [SerializeField] private LevelBounds _levelBounds;
 
+        public Queue<Bullet> GetAllPool() => _bulletPool;
         private readonly Queue<Bullet> _bulletPool = new();
         private readonly HashSet<Bullet> _activeBullets = new();
-        private readonly List<Bullet> _bulletCache = new();
 
         private void Awake() {
             for (var i = 0; i < _initialCount; i++) {
                 var bullet = _bulletFactory.Create(_worldTransform);
                 _bulletPool.Enqueue(bullet);
-            }
-        }
-
-        private void FixedUpdate() {
-            _bulletCache.Clear();
-            _bulletCache.AddRange(_activeBullets);
-
-            for (int i = 0, count = _bulletCache.Count; i < count; i++) {
-                var bullet = _bulletCache[i];
-                if (!_levelBounds.InBounds(bullet.transform.position)) {
-                    Despawn(bullet);
-                }
             }
         }
 
