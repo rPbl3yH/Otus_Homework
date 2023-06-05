@@ -52,7 +52,7 @@ namespace ShootEmUp
                 Velocity = _weaponComponent.Rotation * Vector3.up * _bulletConfig.Speed
             };
 
-			_bulletService.CreateBullet(bulletData);
+			_bulletService.SpawnBullet(bulletData);
         }
     }
 }

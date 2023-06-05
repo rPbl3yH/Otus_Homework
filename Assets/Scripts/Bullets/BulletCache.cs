@@ -6,9 +6,13 @@ namespace ShootEmUp
 	public sealed class BulletCache : MonoBehaviour {
 
 		[SerializeField] private LevelBounds _levelBounds;
-        [SerializeField] private BulletPool _bulletPool;
 
+        private Pool<Bullet> _bulletPool;
 		private readonly List<Bullet> _bulletCache = new();
+
+		public void Construct(Pool<Bullet> pool) {
+			_bulletPool = pool;
+		}
 
 		private void FixedUpdate() {
 			_bulletCache.Clear();

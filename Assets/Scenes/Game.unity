@@ -227,9 +227,9 @@ GameObject:
   - component: {fileID: 363245576}
   - component: {fileID: 363245577}
   - component: {fileID: 363245578}
-  - component: {fileID: 363245579}
   - component: {fileID: 363245580}
   - component: {fileID: 363245581}
+  - component: {fileID: 363245582}
   m_Layer: 0
   m_Name: BulletService
   m_TagString: Untagged
@@ -265,7 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfc06c87704dcc43a9bbb18490accf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPool: {fileID: 363245579}
+  _bulletFactory: {fileID: 363245578}
+  _worldTransform: {fileID: 1683128698}
 --- !u!114 &363245578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,22 +281,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 201757604187811891, guid: 5fe72886874b4e445b06cf777ca4920d,
     type: 3}
---- !u!114 &363245579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363245575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 902c94723bf45fe43b0a6b43d6db17d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _initialCount: 50
-  _bulletFactory: {fileID: 363245578}
-  _worldTransform: {fileID: 1683128698}
-  _container: {fileID: 1831741369}
 --- !u!114 &363245580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313e6603107800a46ad6904c23e14b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPool: {fileID: 363245579}
 --- !u!114 &363245581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +306,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelBounds: {fileID: 2572952653776768186}
-  _bulletPool: {fileID: 363245579}
+--- !u!114 &363245582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363245575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0221b013dc94177b6d790686bc22ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialCount: 50
+  _worldTransform: {fileID: 1683128698}
+  _bulletCollisionObserver: {fileID: 363245580}
+  _bulletCache: {fileID: 363245581}
+  _bulletFactory: {fileID: 363245578}
+  _bulletService: {fileID: 363245577}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,8 +825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57ed31af8d94ec3b11df7e2b588d40f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 0}
-  _gameManager: {fileID: 0}
+  _character: {fileID: 4414282821800802405}
+  _gameManager: {fileID: 3951702117947426123}
   _bulletService: {fileID: 363245577}
   _bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
   _fireRequired: 0
@@ -1397,6 +1398,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce88fee201654f6e8064002ed15de594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4414282821800802405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2460808198020542054, guid: 9699e7e809fd44b2bbf3d30c951ecbd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3926786964592264468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4414282821800802397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c597a4c88a904988b16fbba5482d533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4788406047096451828

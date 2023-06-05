@@ -4,16 +4,20 @@ namespace ShootEmUp
 {
     public sealed class BulletCollisionObserver : MonoBehaviour
     {
-        [SerializeField] private BulletPool _bulletPool;
+        private Pool<Bullet> _bulletPool;
+
+        public void Construct(Pool<Bullet> pool) {
+            _bulletPool = pool;
+        }
 
         private void OnEnable() {
-            _bulletPool.OnBulletAdded += OnBulletAdded;
-            _bulletPool.OnBulletRemoved += OnBulletRemoved;
+            _bulletPool.OnActiveBulletAdded += OnBulletAdded;
+            _bulletPool.OnActiveBulletRemoved += OnBulletRemoved;
         }
 
         private void OnDisable() {
-            _bulletPool.OnBulletAdded -= OnBulletAdded;
-            _bulletPool.OnBulletRemoved -= OnBulletRemoved;
+            _bulletPool.OnActiveBulletAdded -= OnBulletAdded;
+            _bulletPool.OnActiveBulletRemoved -= OnBulletRemoved;
         }
 
         private void OnBulletRemoved(Bullet bullet) {
@@ -25,6 +29,7 @@ namespace ShootEmUp
         }
 
         private void OnBulletCollision(Bullet bullet, Collision2D collision) {
+            bullet.OnCollisionEntered -= OnBulletCollision;
             BulletUtils.DealDamage(bullet, collision.gameObject);
             _bulletPool.Despawn(bullet);
         }

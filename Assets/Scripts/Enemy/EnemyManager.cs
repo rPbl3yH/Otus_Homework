@@ -45,7 +45,7 @@ namespace ShootEmUp
 
         private void OnFire(GameObject enemy, Vector2 position, Vector2 direction)
         {
-            _bulletService.CreateBullet(new BulletData
+            _bulletService.SpawnBullet(new BulletData
             {
                 IsPlayer = false,
                 PhysicsLayer = (int) PhysicsLayer.ENEMY,
