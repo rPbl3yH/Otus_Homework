@@ -14,11 +14,14 @@ namespace ShootEmUp
 
         private GameObject target;
         private float currentTime;
+        private HitPointsComponent _targetHits;
 
         public void SetTarget(GameObject target)
         {
             this.target = target;
-        }
+            _targetHits = target.GetComponent<HitPointsComponent>();
+
+		}
 
         public void Reset()
         {
@@ -31,8 +34,12 @@ namespace ShootEmUp
             {
                 return;
             }
+
+            if(_targetHits == null) {
+                return;
+            }
             
-            if (!this.target.GetComponent<HitPointsComponent>().IsHitPointsExists())
+            if (!this._targetHits.IsHitPointsExists())
             {
                 return;
             }

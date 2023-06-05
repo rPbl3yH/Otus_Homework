@@ -10,12 +10,12 @@ namespace ShootEmUp
             _bulletPool = pool;
         }
 
-        private void OnEnable() {
+        private void Start() {
             _bulletPool.OnActiveBulletAdded += OnBulletAdded;
             _bulletPool.OnActiveBulletRemoved += OnBulletRemoved;
         }
 
-        private void OnDisable() {
+        private void OnDestroy() {
             _bulletPool.OnActiveBulletAdded -= OnBulletAdded;
             _bulletPool.OnActiveBulletRemoved -= OnBulletRemoved;
         }
