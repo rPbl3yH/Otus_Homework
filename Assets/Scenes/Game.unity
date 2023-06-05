@@ -1413,10 +1413,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5377a5d4caa94482972174d0a74ac4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _params:
-    _startPositionY: 19
-    _endPositionY: 8
-    _movingSpeedY: 5
+  _levelConfigs:
+    StartPositionY: 19
+    EndPositionY: 8
+    MovingSpeedY: 5
 --- !u!1 &4914023371208914563
 GameObject:
   m_ObjectHideFlags: 0
