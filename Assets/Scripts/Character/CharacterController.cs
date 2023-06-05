@@ -4,16 +4,18 @@ namespace ShootEmUp
 {
     public sealed class CharacterController : MonoBehaviour
     {
-        [SerializeField] private GameObject character; 
-        [SerializeField] private GameManager gameManager;
+        [SerializeField] private GameObject _character; 
+        [SerializeField] private GameManager _gameManager;
         [SerializeField] private BulletService _bulletService;
         [SerializeField] private BulletConfig _bulletConfig;
         
         public bool _fireRequired;
         private HitPointsComponent _hitPointsComponent;
+        private WeaponComponent _weaponComponent;
 
         private void Awake() {
-            _hitPointsComponent = character.GetComponent<HitPointsComponent>();
+            _hitPointsComponent = _character.GetComponent<HitPointsComponent>();
+            _weaponComponent = _character.GetComponent<WeaponComponent>();
         }
 
         private void OnEnable()
@@ -35,22 +37,22 @@ namespace ShootEmUp
             }
         }
 
-        private void OnCharacterDeath(GameObject _) {
-            gameManager.FinishGame();
+        private void OnCharacterDeath(GameObject gameObj) {
+            _gameManager.FinishGame();
         }
 
         private void Fire()
         {
-            var weapon = character.GetComponent<WeaponComponent>();
-            _bulletService.CreateBullet(new BulletData
-            {
+            var bulletData = new BulletData {
                 IsPlayer = true,
-                PhysicsLayer = (int) _bulletConfig.PhysicsLayer,
+                PhysicsLayer = (int)_bulletConfig.PhysicsLayer,
                 Color = _bulletConfig.Color,
                 Damage = _bulletConfig.Damage,
-                Position = weapon.Position,
-                Velocity = weapon.Rotation * Vector3.up * _bulletConfig.Speed
-            });
+                Position = _weaponComponent.Position,
+                Velocity = _weaponComponent.Rotation * Vector3.up * _bulletConfig.Speed
+            };
+
+			_bulletService.CreateBullet(bulletData);
         }
     }
 }

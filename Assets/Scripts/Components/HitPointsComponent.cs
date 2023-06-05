@@ -16,6 +16,7 @@ namespace ShootEmUp
         public void TakeDamage(int damage)
         {
             _hitPoints -= damage;
+
             if (_hitPoints <= 0)
             {
                 OnDeath?.Invoke(gameObject);
