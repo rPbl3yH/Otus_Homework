@@ -1,16 +1,19 @@
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
 	public sealed class BulletService : MonoBehaviour
     {
-		[SerializeField] private BulletFactory _bulletFactory;
 		[SerializeField] private Transform _worldTransform;
 
+		private BulletFactory _bulletFactory;
 		private Pool<Bullet> _bulletPool;
 
-		public void Construct(Pool<Bullet> pool) {
+		[Inject]
+		public void Construct(Pool<Bullet> pool, BulletFactory bulletFactory) {
 			_bulletPool = pool;
+			_bulletFactory = bulletFactory;
 		}
 
 		public Bullet SpawnBullet(BulletData bulletData) {

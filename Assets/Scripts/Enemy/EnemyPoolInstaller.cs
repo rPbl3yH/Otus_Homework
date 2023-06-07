@@ -8,8 +8,7 @@ namespace ShootEmUp
         [SerializeField] private float _initialCount = 7;
 		[SerializeField] private Transform _container;
 
-		[Inject]
-		private EnemyFactory _enemyFactory;
+		[SerializeField] private EnemyFactory _enemyFactory;
 
         private Pool<Enemy> _enemyPool;
 

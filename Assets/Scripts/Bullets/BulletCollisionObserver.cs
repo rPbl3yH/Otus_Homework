@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
@@ -6,6 +7,7 @@ namespace ShootEmUp
     {
         private Pool<Bullet> _bulletPool;
 
+        [Inject]
         public void Construct(Pool<Bullet> pool) {
             _bulletPool = pool;
         }

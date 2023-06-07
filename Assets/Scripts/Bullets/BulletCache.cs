@@ -1,17 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
 	public sealed class BulletCache : MonoBehaviour {
 
-		[SerializeField] private LevelBounds _levelBounds;
+		private LevelBounds _levelBounds;
 
         private Pool<Bullet> _bulletPool;
 		private readonly List<Bullet> _bulletCache = new();
 
-		public void Construct(Pool<Bullet> pool) {
+		[Inject]
+		public void Construct(Pool<Bullet> pool, LevelBounds levelBounds) {
 			_bulletPool = pool;
+			_levelBounds = levelBounds;
 		}
 
 		private void FixedUpdate() {

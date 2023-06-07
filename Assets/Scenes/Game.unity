@@ -265,7 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfc06c87704dcc43a9bbb18490accf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletFactory: {fileID: 363245578}
   _worldTransform: {fileID: 1683128698}
 --- !u!114 &363245578
 MonoBehaviour:
@@ -305,7 +304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b973d41bbe5479f957bc783d417b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelBounds: {fileID: 2572952653776768186}
 --- !u!114 &363245582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,10 +319,7 @@ MonoBehaviour:
   _initialCount: 50
   _worldTransform: {fileID: 1683128698}
   _container: {fileID: 1831741369}
-  _bulletCollisionObserver: {fileID: 363245580}
-  _bulletCache: {fileID: 363245581}
   _bulletFactory: {fileID: 363245578}
-  _bulletService: {fileID: 363245577}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialCount: 7
   _container: {fileID: 178513672}
+  _enemyFactory: {fileID: 562298208}
 --- !u!114 &562298208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,7 +602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1b3b5e319109e4c87276fc452421b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterController: {fileID: 1879759790}
 --- !u!114 &1134805362
 MonoBehaviour:
   m_ObjectHideFlags: 0
