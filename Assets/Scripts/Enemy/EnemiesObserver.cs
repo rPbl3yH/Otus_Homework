@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
-    public sealed class EnemiesObserver : MonoBehaviour
+	public sealed class EnemiesObserver : MonoBehaviour
     {
-        [SerializeField] private BulletService _bulletService;
-
+        private BulletService _bulletService;
         private Pool<Enemy> _enemyPool;
 
-        public void Construct(Pool<Enemy> pool)
+        [Inject]
+        public void Construct(Pool<Enemy> pool, BulletService bulletService)
         {
             _enemyPool = pool;
+            _bulletService = bulletService;
         }
 
         private void Start()

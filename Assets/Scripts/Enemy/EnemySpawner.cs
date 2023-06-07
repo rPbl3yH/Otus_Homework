@@ -1,18 +1,19 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
 	public class EnemySpawner : MonoBehaviour
     {
         private Pool<Enemy> _enemyPool;
+        private EnemyFactory _enemyFactory;
 
-        [SerializeField] private EnemyFactory _enemyFactory;
-
-
-        public void Construct(Pool<Enemy> pool)
+        [Inject]
+        public void Construct(Pool<Enemy> pool, EnemyFactory enemyFactory)
         {
             _enemyPool = pool;
+            _enemyFactory = enemyFactory;
         }
 
         private IEnumerator Start()

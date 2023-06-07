@@ -459,9 +459,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialCount: 7
   _container: {fileID: 178513672}
-  _enemyFactory: {fileID: 562298208}
-  _enemySpawner: {fileID: 562298210}
-  _enemiesObserver: {fileID: 562298209}
 --- !u!114 &562298208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,7 +487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36c0b48ac53444e2851a50d5790cc7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletService: {fileID: 363245577}
 --- !u!114 &562298210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,7 +499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87317797cee4342f78cce2fe70b7dec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyFactory: {fileID: 562298208}
 --- !u!1 &883274639
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,7 +852,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _character: {fileID: 4414282821800802405}
-  _bulletService: {fileID: 363245577}
   _bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
   _fireRequired: 0
 --- !u!1 &61006797492197339
@@ -1371,6 +1365,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 3951702117947426125}
+  - {fileID: 562298207}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:

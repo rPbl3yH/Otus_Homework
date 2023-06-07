@@ -1,23 +1,25 @@
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
-	public sealed class EnemyPoolInstaller : MonoBehaviour {
+	public sealed class EnemyPoolInstaller : MonoInstaller<EnemyPoolInstaller> {
 
         [SerializeField] private float _initialCount = 7;
 		[SerializeField] private Transform _container;
-		[SerializeField] private EnemyFactory _enemyFactory;
-		[SerializeField] private EnemySpawner _enemySpawner;
-		[SerializeField] private EnemiesObserver _enemiesObserver;
+
+		[Inject]
+		private EnemyFactory _enemyFactory;
 
         private Pool<Enemy> _enemyPool;
 
-		private void Awake() {
+		public override void InstallBindings()
+		{
 			_enemyPool = new Pool<Enemy>(_container);
-			_enemyFactory.Construct(_enemyPool);
-			_enemySpawner.Construct(_enemyPool);
-			_enemiesObserver.Construct(_enemyPool);
+			Container.Bind<Pool<Enemy>>().FromInstance(_enemyPool).AsSingle();
+		}
 
+		private void Awake() {
 			for (var i = 0; i < _initialCount; i++) {
 				var enemy = _enemyFactory.Create(_container);
 				_enemyPool.Add(enemy);
