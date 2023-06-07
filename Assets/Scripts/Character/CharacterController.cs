@@ -1,21 +1,28 @@
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
     public sealed class CharacterController : MonoBehaviour
     {
         [SerializeField] private Character _character; 
-        [SerializeField] private GameManager _gameManager;
-        [SerializeField] private BulletService _bulletService;
         [SerializeField] private BulletConfig _bulletConfig;
         
         public bool _fireRequired;
+        private BulletService _bulletService;
+        private GameManager _gameManager;
         private HitPointsComponent _hitPointsComponent;
         private WeaponComponent _weaponComponent;
 
         private void Awake() {
             _hitPointsComponent = _character.HitPointsComponent;
             _weaponComponent = _character.WeaponComponent;
+        }
+
+        [Inject]
+        private void Construct(GameManager gameManager, BulletService bulletService) {
+            _gameManager = gameManager;
+            _bulletService = bulletService;
         }
 
         private void OnEnable()
