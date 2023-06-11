@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerLevel _playerLevel;
     [SerializeField] private HeroPopup _heroPopup;
     [SerializeField] private CharacterStatsInstaller _characterStatsInstaller;
+    [SerializeField] private UserInfoInstaller _userInfoInstaller;
     
     private IPresentationModel _presentationModel;
 
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
         _userInfo = new UserInfo();
         _playerLevel = new PlayerLevel();
 
+        _userInfoInstaller.Construct(_userInfo);
         _characterStatsInstaller.Construct(_characterInfo);
          _presentationModel = new PresentationModel(_characterInfo, _playerLevel, _userInfo);
         _heroPopup.Show(_presentationModel);
