@@ -6,6 +6,7 @@ namespace Lessons.Architecture.PM
 {
     public sealed class CharacterStat
     {
+
         public event Action<int> OnValueChanged; 
 
         [ShowInInspector, ReadOnly]
@@ -13,6 +14,11 @@ namespace Lessons.Architecture.PM
 
         [ShowInInspector, ReadOnly]
         public int Value { get; private set; }
+        
+        public CharacterStat(string name, int value) {
+            Name = name;
+            Value = value;
+        }
 
         [Button]
         public void ChangeValue(int value)

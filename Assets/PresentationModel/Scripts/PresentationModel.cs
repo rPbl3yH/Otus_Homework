@@ -19,6 +19,15 @@ public class PresentationModel : IPresentationModel
         _userInfo.OnIconChanged += OnIconChanged;
         _userInfo.OnNameChanged += OnNameChanged;
         _userInfo.OnDescriptionChanged += OnDescriptionChanged;
+        var stats = characterInfo.GetStats();
+
+        foreach ( var item in stats) {
+            item.OnValueChanged += OnStatValueChanged;
+        }
+    }
+
+    private void OnStatValueChanged(int value) {
+        ChangeState();
     }
 
     private void OnDescriptionChanged(string description) {
@@ -41,18 +50,9 @@ public class PresentationModel : IPresentationModel
         return true;
     }
 
-    string IPresentationModel.GetDamage() {
-        return string.Empty;
-        return _characterInfo.GetStat("Damage").ToString();
-    }
 
     string IPresentationModel.GetDescription() {
         return _userInfo.Description;
-    }
-
-    string IPresentationModel.GetDexterity() {
-        return string.Empty;
-        return _characterInfo.GetStat("Dexterity").ToString();
     }
 
     float IPresentationModel.GetFillAmount() {
@@ -61,11 +61,6 @@ public class PresentationModel : IPresentationModel
 
     Sprite IPresentationModel.GetIcon() {
         return _userInfo.Icon;
-    }
-
-    string IPresentationModel.GetIntelligence() {
-        return string.Empty;
-        return _characterInfo.GetStat("Intelligence").ToString();
     }
 
     string IPresentationModel.GetLevelText() {
@@ -83,23 +78,29 @@ public class PresentationModel : IPresentationModel
     string IPresentationModel.GetProgressBarText() {
         return $"XP: {_playerLevel.CurrentExperience}/{_playerLevel.RequiredExperience}";
     }
+    
+    string IPresentationModel.GetDamage() {
+        return GetStatText(CharacterStatKeys.Damage);
+    }
+
+    string IPresentationModel.GetDexterity() {
+        return GetStatText(CharacterStatKeys.Dexterity);
+    }
+
+    string IPresentationModel.GetIntelligence() {
+        return GetStatText(CharacterStatKeys.Intelligence);
+    }
 
     string IPresentationModel.GetRegeneration() {
-        return string.Empty;
-
-        return _characterInfo.GetStat("Regeneration").ToString();
+        return GetStatText(CharacterStatKeys.Regeneration);
     }
 
     string IPresentationModel.GetSpeed() {
-        return string.Empty;
-
-        return _characterInfo.GetStat("MoveSpeed").ToString();
+        return GetStatText(CharacterStatKeys.MoveSpeed);
     }
 
     string IPresentationModel.GetStamina() {
-        return string.Empty;
-
-        return _characterInfo.GetStat("Staminf").ToString();
+        return GetStatText(CharacterStatKeys.Stamina);
     }
 
     void IPresentationModel.OnCloseClick() {
@@ -108,5 +109,11 @@ public class PresentationModel : IPresentationModel
 
     void IPresentationModel.OnLevelUpClick() {
         Debug.Log("level up click");
+    }
+
+    string GetStatText(string key) {
+        var name = _characterInfo.GetStat(key).Name;
+        var value = _characterInfo.GetStat(key).Value;
+        return $"{name}: {value}";
     }
 }
