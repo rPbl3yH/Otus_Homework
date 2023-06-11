@@ -24,26 +24,37 @@ public class PresentationModel : IPresentationModel
         foreach ( var item in stats) {
             item.OnValueChanged += OnStatValueChanged;
         }
+
+        playerLevel.OnExperienceChanged += OnExperienceChanged;
+        playerLevel.OnLevelUp += OnLevelUp;
+    }
+
+    private void OnLevelUp() {
+        UpdateState();
+    }
+
+    private void OnExperienceChanged(int value) {
+        UpdateState();
     }
 
     private void OnStatValueChanged(int value) {
-        ChangeState();
+        UpdateState();
     }
 
     private void OnDescriptionChanged(string description) {
-        ChangeState();
+        UpdateState();
     }
 
-    private void ChangeState() {
+    private void UpdateState() {
         OnStateChanged?.Invoke();
     }
 
     private void OnNameChanged(string name) {
-        ChangeState();
+        UpdateState();
     }
 
     private void OnIconChanged(Sprite sprite) {
-        ChangeState();
+        UpdateState();
     }
 
     bool IPresentationModel.GetButtonInteractable() {
@@ -104,10 +115,12 @@ public class PresentationModel : IPresentationModel
     }
 
     void IPresentationModel.OnCloseClick() {
+        
         Debug.Log("close click");        
     }
 
     void IPresentationModel.OnLevelUpClick() {
+        _playerLevel.LevelUp();
         Debug.Log("level up click");
     }
 
