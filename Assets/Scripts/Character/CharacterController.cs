@@ -5,9 +5,9 @@ namespace ShootEmUp
 {
     public sealed class CharacterController : MonoBehaviour
     {
-        [SerializeField] private Character _character; 
+        [SerializeField] private Character _character;
         [SerializeField] private BulletConfig _bulletConfig;
-        
+
         public bool _fireRequired;
         private BulletService _bulletService;
         private GameManager _gameManager;
@@ -25,20 +25,16 @@ namespace ShootEmUp
             _bulletService = bulletService;
         }
 
-        private void OnEnable()
-        {
+        private void OnEnable() {
             _hitPointsComponent.OnDeath += OnCharacterDeath;
         }
 
-        private void OnDisable()
-        {
+        private void OnDisable() {
             _hitPointsComponent.OnDeath -= OnCharacterDeath;
         }
 
-        private void FixedUpdate()
-        {
-            if (_fireRequired)
-            {
+        private void FixedUpdate() {
+            if (_fireRequired) {
                 Fire();
                 _fireRequired = false;
             }
@@ -48,8 +44,7 @@ namespace ShootEmUp
             _gameManager.FinishGame();
         }
 
-        private void Fire()
-        {
+        private void Fire() {
             var bulletData = new BulletData {
                 IsPlayer = true,
                 PhysicsLayer = (int)_bulletConfig.PhysicsLayer,
@@ -59,7 +54,7 @@ namespace ShootEmUp
                 Velocity = _weaponComponent.Rotation * Vector3.up * _bulletConfig.Speed
             };
 
-			_bulletService.SpawnBullet(bulletData);
+            _bulletService.SpawnBullet(bulletData);
         }
     }
 }

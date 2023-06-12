@@ -1,16 +1,15 @@
-using System;
 using ModestTree;
+using System;
 
 namespace Zenject
 {
     public class BindSignalToBinder<TSignal>
     {
-        DiContainer _container;
-        BindStatement _bindStatement;
-        SignalBindingBindInfo _signalBindInfo;
+        private DiContainer _container;
+        private BindStatement _bindStatement;
+        private SignalBindingBindInfo _signalBindInfo;
 
-        public BindSignalToBinder(DiContainer container, SignalBindingBindInfo signalBindInfo)
-        {
+        public BindSignalToBinder(DiContainer container, SignalBindingBindInfo signalBindInfo) {
             _container = container;
 
             _signalBindInfo = signalBindInfo;
@@ -18,13 +17,11 @@ namespace Zenject
             _bindStatement = container.StartBinding();
         }
 
-        protected SignalBindingBindInfo SignalBindInfo
-        {
+        protected SignalBindingBindInfo SignalBindInfo {
             get { return _signalBindInfo; }
         }
 
-        public SignalCopyBinder ToMethod(Action<TSignal> callback)
-        {
+        public SignalCopyBinder ToMethod(Action<TSignal> callback) {
             Assert.That(!_bindStatement.HasFinalizer);
             _bindStatement.SetFinalizer(new NullBindingFinalizer());
 
@@ -40,23 +37,19 @@ namespace Zenject
             return new SignalCopyBinder(bindInfo);
         }
 
-        public SignalCopyBinder ToMethod(Action callback)
-        {
+        public SignalCopyBinder ToMethod(Action callback) {
             return ToMethod(signal => callback());
         }
 
-        public BindSignalFromBinder<TObject, TSignal> ToMethod<TObject>(Action<TObject, TSignal> handler)
-        {
+        public BindSignalFromBinder<TObject, TSignal> ToMethod<TObject>(Action<TObject, TSignal> handler) {
             return ToMethod<TObject>(x => (Action<TSignal>)(s => handler(x, s)));
         }
 
-        public BindSignalFromBinder<TObject, TSignal> ToMethod<TObject>(Func<TObject, Action> handlerGetter)
-        {
+        public BindSignalFromBinder<TObject, TSignal> ToMethod<TObject>(Func<TObject, Action> handlerGetter) {
             return ToMethod<TObject>(x => (Action<TSignal>)(s => handlerGetter(x)()));
         }
 
-        public BindSignalFromBinder<TObject, TSignal> ToMethod<TObject>(Func<TObject, Action<TSignal>> handlerGetter)
-        {
+        public BindSignalFromBinder<TObject, TSignal> ToMethod<TObject>(Func<TObject, Action<TSignal>> handlerGetter) {
             return new BindSignalFromBinder<TObject, TSignal>(
                 _signalBindInfo, _bindStatement, handlerGetter, _container);
         }

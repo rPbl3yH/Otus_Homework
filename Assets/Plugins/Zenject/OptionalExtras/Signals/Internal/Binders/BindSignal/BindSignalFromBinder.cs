@@ -1,42 +1,37 @@
-using System;
 using ModestTree;
+using System;
 
 namespace Zenject
 {
     public class BindSignalFromBinder<TObject, TSignal>
     {
-        readonly BindStatement _bindStatement;
-        readonly Func<TObject, Action<TSignal>> _methodGetter;
-        readonly DiContainer _container;
-        readonly SignalBindingBindInfo _signalBindInfo;
+        private readonly BindStatement _bindStatement;
+        private readonly Func<TObject, Action<TSignal>> _methodGetter;
+        private readonly DiContainer _container;
+        private readonly SignalBindingBindInfo _signalBindInfo;
 
         public BindSignalFromBinder(
             SignalBindingBindInfo signalBindInfo, BindStatement bindStatement, Func<TObject, Action<TSignal>> methodGetter,
-            DiContainer container)
-        {
+            DiContainer container) {
             _signalBindInfo = signalBindInfo;
             _bindStatement = bindStatement;
             _methodGetter = methodGetter;
             _container = container;
         }
 
-        public SignalCopyBinder FromResolve()
-        {
+        public SignalCopyBinder FromResolve() {
             return From(x => x.FromResolve().AsCached());
         }
 
-        public SignalCopyBinder FromResolveAll()
-        {
+        public SignalCopyBinder FromResolveAll() {
             return From(x => x.FromResolveAll().AsCached());
         }
 
-        public SignalCopyBinder FromNew()
-        {
+        public SignalCopyBinder FromNew() {
             return From(x => x.FromNew().AsCached());
         }
 
-        public SignalCopyBinder From(Action<ConcreteBinderGeneric<TObject>> objectBindCallback)
-        {
+        public SignalCopyBinder From(Action<ConcreteBinderGeneric<TObject>> objectBindCallback) {
             Assert.That(!_bindStatement.HasFinalizer);
             _bindStatement.SetFinalizer(new NullBindingFinalizer());
 
@@ -58,7 +53,7 @@ namespace Zenject
                 .WithArguments(_signalBindInfo, typeof(TObject), objectLookupId, methodGetterMapper)
                 .NonLazy();
 
-            var copyBinder = new SignalCopyBinder( wrapperBinder.BindInfo);
+            var copyBinder = new SignalCopyBinder(wrapperBinder.BindInfo);
             // Make sure if they use one of the Copy/Move methods that it applies to both bindings
             copyBinder.AddCopyBindInfo(objectBinder.BindInfo);
             return copyBinder;

@@ -4,8 +4,7 @@ namespace ShootEmUp
 {
     public sealed class EnemyMoveAgent : MonoBehaviour
     {
-        public bool IsReached
-        {
+        public bool IsReached {
             get { return _isReached; }
         }
 
@@ -15,22 +14,18 @@ namespace ShootEmUp
 
         private bool _isReached;
 
-        public void SetDestination(Vector2 endPoint)
-        {
+        public void SetDestination(Vector2 endPoint) {
             _destination = endPoint;
             _isReached = false;
         }
 
-        private void FixedUpdate()
-        {
-            if (_isReached)
-            {
+        private void FixedUpdate() {
+            if (_isReached) {
                 return;
             }
-            
-            var vector = _destination - (Vector2) transform.position;
-            if (vector.magnitude <= 0.25f)
-            {
+
+            var vector = _destination - (Vector2)transform.position;
+            if (vector.magnitude <= 0.25f) {
                 _isReached = true;
                 return;
             }

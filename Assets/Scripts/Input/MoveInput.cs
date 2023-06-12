@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class MoveInput : MonoBehaviour {
+    public sealed class MoveInput : MonoBehaviour
+    {
         public float HorizontalDirection { get; private set; }
 
         [SerializeField]

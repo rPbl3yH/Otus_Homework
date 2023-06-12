@@ -3,8 +3,8 @@ using Zenject;
 
 namespace ShootEmUp
 {
-    public sealed class FireInput : MonoBehaviour {
-        
+    public sealed class FireInput : MonoBehaviour
+    {
         private CharacterController _characterController;
 
         [Inject]

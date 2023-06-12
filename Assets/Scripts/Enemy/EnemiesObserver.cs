@@ -3,46 +3,39 @@ using Zenject;
 
 namespace ShootEmUp
 {
-	public sealed class EnemiesObserver : MonoBehaviour
+    public sealed class EnemiesObserver : MonoBehaviour
     {
         private BulletService _bulletService;
         private Pool<Enemy> _enemyPool;
 
         [Inject]
-        public void Construct(Pool<Enemy> pool, BulletService bulletService)
-        {
+        public void Construct(Pool<Enemy> pool, BulletService bulletService) {
             _enemyPool = pool;
             _bulletService = bulletService;
         }
 
-        private void Start()
-        {
+        private void Start() {
             _enemyPool.OnActiveBulletAdded += OnActiveBulletAdded;
             _enemyPool.OnActiveBulletRemoved += OnActiveBulletRemoved;
         }
 
-        private void OnDestroy()
-        {
+        private void OnDestroy() {
             _enemyPool.OnActiveBulletAdded -= OnActiveBulletAdded;
             _enemyPool.OnActiveBulletRemoved -= OnActiveBulletRemoved;
         }
 
-        private void OnActiveBulletRemoved(Enemy enemy)
-        {
+        private void OnActiveBulletRemoved(Enemy enemy) {
             enemy.HitPointsComponent.OnDeath -= OnDestroyed;
             enemy.EnemyAttackAgent.OnFire -= OnFire;
         }
 
-        private void OnActiveBulletAdded(Enemy enemy)
-        {
+        private void OnActiveBulletAdded(Enemy enemy) {
             enemy.HitPointsComponent.OnDeath += OnDestroyed;
             enemy.EnemyAttackAgent.OnFire += OnFire;
         }
 
-        private void OnFire(GameObject gameObj, Vector2 position, Vector2 direction)
-        {
-            _bulletService.SpawnBullet(new BulletData
-            {
+        private void OnFire(GameObject gameObj, Vector2 position, Vector2 direction) {
+            _bulletService.SpawnBullet(new BulletData {
                 IsPlayer = false,
                 PhysicsLayer = (int)PhysicsLayer.ENEMY,
                 Color = Color.red,
@@ -52,11 +45,9 @@ namespace ShootEmUp
             });
         }
 
-        private void OnDestroyed(GameObject gameObj)
-        {
+        private void OnDestroyed(GameObject gameObj) {
             var enemy = gameObj.GetComponent<Enemy>();
             _enemyPool.Despawn(enemy);
         }
     }
 }
-

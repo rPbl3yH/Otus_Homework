@@ -4,13 +4,16 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-	public sealed class Pool<T> where T : MonoBehaviour{
+    public sealed class Pool<T> where T : MonoBehaviour
+    {
         public event Action<T> OnActiveBulletAdded;
+
         public event Action<T> OnActiveBulletRemoved;
 
         private readonly Transform _container;
 
         public Queue<T> GetAllPool() => _bulletPool;
+
         private readonly Queue<T> _bulletPool = new();
         private readonly HashSet<T> _activeBullets = new();
 
@@ -20,7 +23,7 @@ namespace ShootEmUp
 
         public void Despawn(T bullet) {
             if (_activeBullets.Remove(bullet)) {
-				bullet.transform.SetParent(_container);
+                bullet.transform.SetParent(_container);
                 _bulletPool.Enqueue(bullet);
                 OnActiveBulletRemoved?.Invoke(bullet);
             }
@@ -30,17 +33,16 @@ namespace ShootEmUp
             _bulletPool.Enqueue(bullet);
         }
 
-		public void AddToActiveBullets(T bullet) {
+        public void AddToActiveBullets(T bullet) {
             if (_activeBullets.Add(bullet)) {
                 OnActiveBulletAdded?.Invoke(bullet);
             }
         }
 
-		public bool TryDequeue(out T bullet)
-		{
+        public bool TryDequeue(out T bullet) {
             var isSucces = _bulletPool.TryDequeue(out T result);
             bullet = result;
-			return isSucces;
-		}
-	}
+            return isSucces;
+        }
+    }
 }

@@ -16,46 +16,38 @@ namespace ShootEmUp
         private float currentTime;
         private HitPointsComponent _targetHits;
 
-        public void SetTarget(GameObject target)
-        {
+        public void SetTarget(GameObject target) {
             this.target = target;
             _targetHits = target.GetComponent<HitPointsComponent>();
+        }
 
-		}
-
-        public void Reset()
-        {
+        public void Reset() {
             this.currentTime = this.countdown;
         }
 
-        private void FixedUpdate()
-        {
-            if (!this.moveAgent.IsReached)
-            {
+        private void FixedUpdate() {
+            if (!this.moveAgent.IsReached) {
                 return;
             }
 
-            if(_targetHits == null) {
+            if (_targetHits == null) {
                 return;
             }
-            
-            if (!this._targetHits.IsHitPointsExists())
-            {
+
+            if (!this._targetHits.IsHitPointsExists()) {
                 return;
             }
 
             this.currentTime -= Time.fixedDeltaTime;
-            if (this.currentTime <= 0)
-            {
+            if (this.currentTime <= 0) {
                 this.Fire();
                 this.currentTime += this.countdown;
             }
         }
 
-        private void Fire()
-        {
+        private void Fire() {
             var startPosition = this.weaponComponent.Position;
-            var vector = (Vector2) this.target.transform.position - startPosition;
+            var vector = (Vector2)this.target.transform.position - startPosition;
             var direction = vector.normalized;
             this.OnFire?.Invoke(this.gameObject, startPosition, direction);
         }
