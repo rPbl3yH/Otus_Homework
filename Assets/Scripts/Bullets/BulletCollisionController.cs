@@ -51,8 +51,22 @@ namespace ShootEmUp
 
         private void OnBulletCollision(Bullet bullet, Collision2D collision) {
             bullet.OnCollisionEntered -= OnBulletCollision;
-            BulletUtils.DealDamage(bullet, collision.gameObject);
+            DealDamage(bullet, collision.gameObject);
             _bulletPool.Despawn(bullet);
+        }
+
+        private void DealDamage(Bullet bullet, GameObject other) {
+            if (!other.TryGetComponent(out TeamComponent team)) {
+                return;
+            }
+
+            if (bullet.IsPlayer == team.IsPlayer) {
+                return;
+            }
+
+            if (other.TryGetComponent(out HitPointsComponent hitPoints)) {
+                hitPoints.TakeDamage(bullet.Damage);
+            }
         }
     }
 }

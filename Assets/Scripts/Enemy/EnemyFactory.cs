@@ -5,9 +5,9 @@ namespace ShootEmUp
 {
     public sealed class EnemyFactory : MonoBehaviour
     {
-        [SerializeField] private EnemyPositions enemyPositions;
-        [SerializeField] private Character character;
-        [SerializeField] private Transform worldTransform;
+        [SerializeField] private EnemyPositions _enemyPositions;
+        [SerializeField] private Character _character;
+        [SerializeField] private Transform _worldTransform;
         [SerializeField] private Enemy _prefab;
 
         private Pool<Enemy> _enemyPool;
@@ -27,15 +27,15 @@ namespace ShootEmUp
                 return null;
             }
 
-            enemy.transform.SetParent(worldTransform);
+            enemy.transform.SetParent(_worldTransform);
 
-            var spawnPosition = enemyPositions.RandomSpawnPosition();
+            var spawnPosition = _enemyPositions.RandomSpawnPosition();
             enemy.transform.position = spawnPosition.position;
 
-            var attackPosition = enemyPositions.RandomAttackPosition();
+            var attackPosition = _enemyPositions.RandomAttackPosition();
             enemy.EnemyMoveAgent.SetDestination(attackPosition.position);
 
-            enemy.EnemyAttackAgent.SetTarget(character.gameObject);
+            enemy.EnemyAttackAgent.SetTarget(_character.gameObject);
             return enemy;
         }
     }

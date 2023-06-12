@@ -6,6 +6,7 @@ namespace ShootEmUp
 {
     public class EnemySpawner : MonoBehaviour
     {
+        [SerializeField] private float _spawnTime;
         private Pool<Enemy> _enemyPool;
         private EnemyFactory _enemyFactory;
 
@@ -17,7 +18,7 @@ namespace ShootEmUp
 
         private IEnumerator Start() {
             while (true) {
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(_spawnTime);
                 var enemy = _enemyFactory.Spawn();
 
                 if (enemy != null) {

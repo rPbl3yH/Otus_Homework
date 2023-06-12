@@ -3,7 +3,7 @@ using Zenject;
 
 namespace ShootEmUp
 {
-    public sealed class BulletService : MonoBehaviour
+    public sealed class BulletLauncher : MonoBehaviour
     {
         [SerializeField] private Transform _worldTransform;
 
@@ -19,15 +19,25 @@ namespace ShootEmUp
         public Bullet SpawnBullet(BulletData bulletData) {
             if (_bulletPool.TryDequeue(out var bullet)) {
                 bullet.transform.SetParent(_worldTransform);
-                _bulletFactory.SetupBullet(bullet, bulletData);
             }
             else {
-                bullet = _bulletFactory.Create(bulletData, _worldTransform);
+                bullet = _bulletFactory.Create(_worldTransform);
+                _bulletPool.AddToActiveItems(bullet);
             }
 
+            SetupBullet(bullet, bulletData);
             _bulletPool.AddToActiveItems(bullet);
 
             return bullet;
+        }
+
+        public void SetupBullet(Bullet bullet, BulletData bulletData) {
+            bullet.SetColor(bulletData.Color);
+            bullet.SetDamage(bulletData.Damage);
+            bullet.SetPhysicsLayer(bulletData.PhysicsLayer);
+            bullet.SetPosition(bulletData.Position);
+            bullet.SetVelocity(bulletData.Velocity);
+            bullet.SetTeam(bulletData.IsPlayer);
         }
     }
 }

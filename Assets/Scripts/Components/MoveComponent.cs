@@ -10,8 +10,8 @@ namespace ShootEmUp
         [SerializeField]
         private float _speed = 5.0f;
 
-        public void MoveByRigidbodyVelocity(Vector2 vector) {
-            Vector2 nextPosition = _rigidbody2D.position + vector * _speed;
+        public void MoveByRigidbodyVelocity(Vector2 direction) {
+            Vector2 nextPosition = _rigidbody2D.position + direction * _speed;
             _rigidbody2D.MovePosition(nextPosition);
         }
     }

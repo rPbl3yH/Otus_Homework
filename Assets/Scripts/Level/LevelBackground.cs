@@ -4,6 +4,9 @@ namespace ShootEmUp
 {
     public sealed partial class LevelBackground : MonoBehaviour
     {
+        [SerializeField]
+        private LevelConfigs _levelConfigs;
+
         private float _startPositionY;
 
         private float _endPositionY;
@@ -15,9 +18,6 @@ namespace ShootEmUp
         private float _positionZ;
 
         private Transform _myTransform;
-
-        [SerializeField]
-        private LevelConfigs _levelConfigs;
 
         private void Awake() {
             _startPositionY = _levelConfigs.StartPositionY;
