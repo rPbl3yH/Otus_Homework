@@ -15,13 +15,13 @@ namespace ShootEmUp
         }
 
         private void Start() {
-            _enemyPool.OnActiveBulletAdded += OnActiveBulletAdded;
-            _enemyPool.OnActiveBulletRemoved += OnActiveBulletRemoved;
+            _enemyPool.OnActiveItemAdded += OnActiveBulletAdded;
+            _enemyPool.OnActiveItemRemoved += OnActiveBulletRemoved;
         }
 
         private void OnDestroy() {
-            _enemyPool.OnActiveBulletAdded -= OnActiveBulletAdded;
-            _enemyPool.OnActiveBulletRemoved -= OnActiveBulletRemoved;
+            _enemyPool.OnActiveItemAdded -= OnActiveBulletAdded;
+            _enemyPool.OnActiveItemRemoved -= OnActiveBulletRemoved;
         }
 
         private void OnActiveBulletRemoved(Enemy enemy) {

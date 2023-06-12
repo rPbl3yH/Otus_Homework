@@ -21,7 +21,7 @@ namespace ShootEmUp
                 var enemy = _enemyFactory.Spawn();
 
                 if (enemy != null) {
-                    _enemyPool.AddToActiveBullets(enemy);
+                    _enemyPool.AddToActiveItems(enemy);
                 }
             }
         }

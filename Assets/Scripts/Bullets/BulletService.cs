@@ -25,7 +25,7 @@ namespace ShootEmUp
                 bullet = _bulletFactory.Create(bulletData, _worldTransform);
             }
 
-            _bulletPool.AddToActiveBullets(bullet);
+            _bulletPool.AddToActiveItems(bullet);
 
             return bullet;
         }
