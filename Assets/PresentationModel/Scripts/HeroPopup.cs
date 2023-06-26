@@ -27,7 +27,6 @@ public sealed class HeroPopup : MonoBehaviour
         _progressPresentationModel = progressPresentationModel;
         _presentationModel.OnStateChanged += OnStateChanged;
         _closeButton.onClick.AddListener(OnCloseButtonClick);
-        _levelUpButton.OnClick += OnLevelUpButtonClick;
         UpdateInfo();
     }
 
@@ -37,7 +36,6 @@ public sealed class HeroPopup : MonoBehaviour
 
     public void Hide() { 
         _closeButton.onClick.RemoveListener(OnCloseButtonClick);
-        _levelUpButton.OnClick -= OnLevelUpButtonClick;
     }
 
     private void UpdateInfo() {
@@ -45,16 +43,9 @@ public sealed class HeroPopup : MonoBehaviour
         _progressView.Show(_progressPresentationModel);
 
         _nameText.text = _presentationModel.GetName();
-        _levelText.text = _presentationModel.GetLevelText();
         _icon.sprite = _presentationModel.GetIcon();
         _descriptionText.text = _presentationModel.GetDescription();
 
-        _levelUpButton.SetText(_presentationModel.GetLevelUpText());
-        _levelUpButton.SetIntractable(_presentationModel.GetButtonInteractable());
-    }
-
-    private void OnLevelUpButtonClick() {
-        _presentationModel.OnLevelUpClick();
     }
 
     private void OnCloseButtonClick() {

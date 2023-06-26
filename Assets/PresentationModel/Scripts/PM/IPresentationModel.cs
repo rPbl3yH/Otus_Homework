@@ -1,6 +1,16 @@
 using System;
 using UnityEngine;
 
+public interface IUserInfoPresentationModel
+{
+    Sprite GetIcon();
+
+    string GetName();
+
+    string GetDescription();
+    
+}
+
 public interface IPresentationModel
 {
     event Action OnStateChanged;
