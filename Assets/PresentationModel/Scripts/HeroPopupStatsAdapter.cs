@@ -51,7 +51,7 @@ public sealed class HeroPopupStatsAdapter : MonoBehaviour
     private void RemoveStatView(CharacterStat characterStat) {
         if (_characterStats.TryGetValue(characterStat, out var view)) {
             _characterStats.Remove(characterStat);
-            Destroy(view);
+            Destroy(view.gameObject);
         }
     }
 }

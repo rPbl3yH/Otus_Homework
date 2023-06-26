@@ -1,12 +1,14 @@
 using Lessons.Architecture.PM;
 using System;
 using UnityEngine;
+using Zenject;
 
 public class CharacterStatsInstaller : MonoBehaviour
 {
     [SerializeField] private CharacterStatsConfig _characterStatsConfig;
     private Lessons.Architecture.PM.CharacterInfo _characterInfo;
 
+    [Inject]
     public void Construct(Lessons.Architecture.PM.CharacterInfo characterInfo) {
         _characterInfo = characterInfo;
 

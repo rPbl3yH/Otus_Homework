@@ -1,5 +1,6 @@
 using Lessons.Architecture.PM;
 using UnityEngine;
+using Zenject;
 
 public class UserInfoInstaller : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class UserInfoInstaller : MonoBehaviour
     [SerializeField] private Sprite _icon;
     private UserInfo _userInfo;
 
+    [Inject]
     public void Construct(UserInfo userInfo) {
         _userInfo = userInfo;
         _userInfo.ChangeName(_name);

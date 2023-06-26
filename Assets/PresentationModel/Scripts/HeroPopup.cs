@@ -21,7 +21,7 @@ public sealed class HeroPopup : MonoBehaviour
         _userView.Show(userInfoPresentationModel);
     }
 
-    private void Hide()
+    public void Hide()
     {
         _statsAdapter.Hide();
         _progressView.Hide();
