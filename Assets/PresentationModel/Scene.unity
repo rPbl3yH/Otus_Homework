@@ -1560,14 +1560,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0946a761e77129544b313ad22090bdc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 980234070}
-  _nameText: {fileID: 31987092}
-  _levelText: {fileID: 2135501401}
-  _descriptionText: {fileID: 1767812692}
   _statsAdapter: {fileID: 1542731069}
   _progressView: {fileID: 1542731068}
-  _progressBar: {fileID: 489587668}
-  _levelUpButton: {fileID: 1561339796}
+  _userView: {fileID: 1542731070}
   _closeButton: {fileID: 311761170}
 --- !u!1 &1451923559
 GameObject:
@@ -1744,6 +1739,7 @@ GameObject:
   - component: {fileID: 1542731067}
   - component: {fileID: 1542731068}
   - component: {fileID: 1542731069}
+  - component: {fileID: 1542731070}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1803,6 +1799,21 @@ MonoBehaviour:
   _textStatsView: {fileID: 7856315793955287279, guid: e8950e6734c324f47a07f1ddc57e929d,
     type: 3}
   _container: {fileID: 1094207279}
+--- !u!114 &1542731070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542731066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e438a0b15cf6407887b31374912e6a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 980234070}
+  _nameText: {fileID: 31987092}
+  _descriptionText: {fileID: 1767812692}
 --- !u!1 &1555076077
 GameObject:
   m_ObjectHideFlags: 0

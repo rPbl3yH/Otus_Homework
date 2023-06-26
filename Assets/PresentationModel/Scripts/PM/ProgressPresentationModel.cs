@@ -5,8 +5,6 @@ public class ProgressPresentationModel : IProgressPresentationModel
 {
     private readonly PlayerLevel _playerLevel;
 
-    public event Action OnStateChanged;
-
     public ProgressPresentationModel(PlayerLevel playerLevel)
     {
         _playerLevel = playerLevel;
@@ -14,15 +12,7 @@ public class ProgressPresentationModel : IProgressPresentationModel
         _playerLevel.OnLevelUp += OnLevelChange;
     }
 
-    private void OnLevelChange()
-    {
-        OnStateChanged?.Invoke();
-    }
-
-    private void OnExperienceChange(int value)
-    {
-        OnStateChanged?.Invoke();
-    }
+    public event Action OnStateChanged;
 
     public string GetLevelText()
     {
@@ -41,7 +31,7 @@ public class ProgressPresentationModel : IProgressPresentationModel
 
     public string GetProgressBarText()
     {
-        return $"{_playerLevel.CurrentExperience} / {_playerLevel.RequiredExperience}";
+        return $"XP: {_playerLevel.CurrentExperience} / {_playerLevel.RequiredExperience}";
     }
 
     public bool GetButtonInteractable()
@@ -52,5 +42,15 @@ public class ProgressPresentationModel : IProgressPresentationModel
     public void OnLevelUpClick()
     {
         _playerLevel.LevelUp();
+    }
+
+    private void OnLevelChange()
+    {
+        OnStateChanged?.Invoke();
+    }
+
+    private void OnExperienceChange(int value)
+    {
+        OnStateChanged?.Invoke();
     }
 }

@@ -22,6 +22,12 @@ public sealed class HeroPopupStatsAdapter : MonoBehaviour
         _presentationModel.OnStatRemoved += OnStatRemoved;
     }
 
+    public void Hide()
+    {
+        _presentationModel.OnStatAdded -= OnStatAdded;
+        _presentationModel.OnStatRemoved -= OnStatRemoved;
+    }
+
     private void OnStatRemoved(CharacterStat characterStat) {
         RemoveStatView(characterStat);
     }
