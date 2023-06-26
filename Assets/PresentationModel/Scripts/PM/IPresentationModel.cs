@@ -1,18 +1,5 @@
-using Lessons.Architecture.PM;
 using System;
 using UnityEngine;
-
-public interface IStatPresentationModel
-{
-    string GetStatText();
-}
-
-public interface IHeroStatsPresentationModel
-{
-    event Action<CharacterStat> OnStatAdded;
-    event Action<CharacterStat> OnStatRemoved;
-    CharacterStat[] GetStats();
-}
 
 public interface IPresentationModel
 {

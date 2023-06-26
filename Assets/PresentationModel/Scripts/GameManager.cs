@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         _characterStatsInstaller.Construct(_characterInfo);
          _presentationModel = new PresentationModel(_characterInfo, _playerLevel, _userInfo);
         var heroStatsPM = new HeroStatsPresentation(_characterInfo);
-        _heroPopup.Show(_presentationModel, heroStatsPM);
+        var progressPM = new ProgressPresentationModel(_playerLevel);
+        _heroPopup.Show(_presentationModel, heroStatsPM, progressPM);
     }
 }
