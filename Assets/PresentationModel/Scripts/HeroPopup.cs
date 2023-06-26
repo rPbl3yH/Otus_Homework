@@ -9,21 +9,18 @@ public sealed class HeroPopup : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _levelText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
-    [SerializeField] private TextMeshProUGUI _moveSpeedText;
-    [SerializeField] private TextMeshProUGUI _staminaText;
-    [SerializeField] private TextMeshProUGUI _dexterityText;
-    [SerializeField] private TextMeshProUGUI _intelligenceText;
-    [SerializeField] private TextMeshProUGUI _damageText;
-    [SerializeField] private TextMeshProUGUI _regenerationText;
+    [SerializeField] private HeroPopupStatsAdapter _statsAdapter;
     [SerializeField] private ProgressBar _progressBar;
     [SerializeField] private InteractableButton _levelUpButton;
     [SerializeField] private Button _closeButton;
     
     private IPresentationModel _presentationModel;
+    private IHeroStatsPresentationModel _heroStatsPresentationModel;
 
-    public void Show(IPresentationModel presentationModel) {
+    public void Show(IPresentationModel presentationModel, IHeroStatsPresentationModel heroStatsPresentationModel) {
         gameObject.SetActive(true);
         _presentationModel = presentationModel;
+        _heroStatsPresentationModel = heroStatsPresentationModel;
         _presentationModel.OnStateChanged += OnStateChanged;
         _closeButton.onClick.AddListener(OnCloseButtonClick);
         _levelUpButton.OnClick += OnLevelUpButtonClick;
@@ -40,17 +37,13 @@ public sealed class HeroPopup : MonoBehaviour
     }
 
     private void UpdateInfo() {
+        _statsAdapter.Show(_heroStatsPresentationModel);
+
         _nameText.text = _presentationModel.GetName();
         _levelText.text = _presentationModel.GetLevelText();
         _icon.sprite = _presentationModel.GetIcon();
         _descriptionText.text = _presentationModel.GetDescription();
-        _moveSpeedText.text = _presentationModel.GetSpeed();
-        _staminaText.text = _presentationModel.GetStamina();
-        _dexterityText.text = _presentationModel.GetDexterity();
-        _intelligenceText.text = _presentationModel.GetIntelligence();
-        _damageText.text = _presentationModel.GetDamage();
-        _regenerationText.text = _presentationModel.GetRegeneration();
-        
+
         _progressBar.SetFill(_presentationModel.GetFillAmount());
         _progressBar.SetText(_presentationModel.GetProgressBarText());
 

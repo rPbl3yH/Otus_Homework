@@ -21,6 +21,11 @@ namespace Lessons.Architecture.PM
         }
 
         [Button]
+        public void ChangeName(string name) {
+            Name = name;
+        }
+
+        [Button]
         public void ChangeValue(int value)
         {
             this.Value = value;

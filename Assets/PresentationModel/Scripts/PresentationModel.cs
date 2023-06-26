@@ -89,30 +89,6 @@ public class PresentationModel : IPresentationModel
     string IPresentationModel.GetProgressBarText() {
         return $"XP: {_playerLevel.CurrentExperience}/{_playerLevel.RequiredExperience}";
     }
-    
-    string IPresentationModel.GetDamage() {
-        return GetStatText(CharacterStatKeys.Damage);
-    }
-
-    string IPresentationModel.GetDexterity() {
-        return GetStatText(CharacterStatKeys.Dexterity);
-    }
-
-    string IPresentationModel.GetIntelligence() {
-        return GetStatText(CharacterStatKeys.Intelligence);
-    }
-
-    string IPresentationModel.GetRegeneration() {
-        return GetStatText(CharacterStatKeys.Regeneration);
-    }
-
-    string IPresentationModel.GetSpeed() {
-        return GetStatText(CharacterStatKeys.MoveSpeed);
-    }
-
-    string IPresentationModel.GetStamina() {
-        return GetStatText(CharacterStatKeys.Stamina);
-    }
 
     void IPresentationModel.OnCloseClick() {
         

@@ -1,10 +1,22 @@
+using Lessons.Architecture.PM;
 using System;
 using UnityEngine;
+
+public interface IStatPresentationModel
+{
+    string GetStatText();
+}
+
+public interface IHeroStatsPresentationModel
+{
+    event Action<CharacterStat> OnStatAdded;
+    event Action<CharacterStat> OnStatRemoved;
+    CharacterStat[] GetStats();
+}
 
 public interface IPresentationModel
 {
     event Action OnStateChanged;
-
     Sprite GetIcon();
 
     string GetName();
@@ -17,17 +29,6 @@ public interface IPresentationModel
 
     string GetProgressBarText();
 
-    string GetSpeed();
-
-    string GetStamina();
-
-    string GetIntelligence();
-
-    string GetDamage();
-
-    string GetRegeneration();
-
-    string GetDexterity();
 
     string GetLevelUpText();
 

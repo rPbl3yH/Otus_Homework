@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         _userInfoInstaller.Construct(_userInfo);
         _characterStatsInstaller.Construct(_characterInfo);
          _presentationModel = new PresentationModel(_characterInfo, _playerLevel, _userInfo);
-        _heroPopup.Show(_presentationModel);
+        var heroStatsPM = new HeroStatsPresentation(_characterInfo);
+        _heroPopup.Show(_presentationModel, heroStatsPM);
     }
 }
