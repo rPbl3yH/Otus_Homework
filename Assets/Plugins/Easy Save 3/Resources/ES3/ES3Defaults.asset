@@ -34,9 +34,9 @@ MonoBehaviour:
     - Assembly-CSharp
     - Zenject-IntegrationTests
     - Cinemachine
+    - Purchasing.Common
     - Services
     - Sirenix.OdinInspector.CompatibilityLayer
-    - Purchasing.Common
     - PPv2URPConverters
     - Zenject-TestFramework
     - Sirenix.OdinInspector.CompatibilityLayer.Editor

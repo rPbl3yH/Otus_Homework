@@ -13,14 +13,14 @@ namespace Game.App
 
         private void Update()
         {
-            this.InvokeUpdate();
+            InvokeUpdate();
         }
 
         public void AddListener(object listener)
         {
             if (listener is IGameUpdateListener updateListener)
             {
-                this.updateListeners.Add(updateListener);
+                updateListeners.Add(updateListener);
             }
 
         }
@@ -29,7 +29,7 @@ namespace Game.App
         {
             if (listener is IGameUpdateListener updateListener)
             {
-                this.updateListeners.Remove(updateListener);
+                updateListeners.Remove(updateListener);
             }
 
         }
@@ -37,13 +37,12 @@ namespace Game.App
         private void InvokeUpdate()
         {
             var deltaTime = Time.deltaTime;
-            for (int i = 0, count = this.updateListeners.Count; i < count; i++)
+            foreach (var updateListener in updateListeners)
             {
-                var listener = this.updateListeners[i];
-                listener.OnUpdate(deltaTime);
+                updateListener.OnUpdate(deltaTime);
             }
 
-            this.OnUpdate?.Invoke(deltaTime);
+            OnUpdate?.Invoke(deltaTime);
         }
     }
 }

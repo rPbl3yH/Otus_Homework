@@ -1,4 +1,3 @@
-using Services;
 using UnityEngine;
 
 namespace SaveLoad.GameManagment
@@ -10,13 +9,6 @@ namespace SaveLoad.GameManagment
         public GameManager()
         {
             Debug.Log("Initialize game manager ");
-        }
-
-        [ServiceInject]
-        public void Construct(GameContext gameContext)
-        {
-            Debug.Log("Init with game context");
-            gameContext.InitGame();
         }
     }
 }

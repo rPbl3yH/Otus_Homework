@@ -25,27 +25,27 @@ namespace Game.App
 
         private void Start()
         {
-            if (this.loadOnStart)
+            if (loadOnStart)
             {
-                this.LoadApplication();
+                LoadApplication();
             }
         }
 
         public async void LoadApplication()
         {
-            var taskList = this.pipeline.GetTaskList();
+            var taskList = pipeline.GetTaskList();
             for (int i = 0, count = taskList.Length; i < count; i++)
             {
                 var taskType = taskList[i];
-                var result = await this.DoTask(taskType);
+                var result = await DoTask(taskType);
                 if (!result.success)
                 {
-                    this.OnFailed?.Invoke(result.error);
+                    OnFailed?.Invoke(result.error);
                     return;
                 }
             }
 
-            this.OnCompleted?.Invoke();
+            OnCompleted?.Invoke();
         }
 
         private Task<LoadingResult> DoTask(Type taskType)

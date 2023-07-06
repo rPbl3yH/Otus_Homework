@@ -8,7 +8,7 @@ namespace SaveLoad.SaveSystem
     public class GameRepository
     {
         private const string GAME_PREFS = "GameState";
-        private Dictionary<string, string> _gameState;
+        private Dictionary<string, string> _gameState = new();
 
 
         public bool TryGetData(string key, out string data)

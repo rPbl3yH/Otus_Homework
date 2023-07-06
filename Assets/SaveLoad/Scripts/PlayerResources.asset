@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85f62eb6a3254f4a952544068035af20, type: 3}
-  m_Name: Services
+  m_Name: PlayerResources
   m_EditorClassIdentifier: 
   editorMode: 0
   releaseScripts:
-  - {fileID: 11500000, guid: 695797c11c3e488bbc9ea37bbe76b8bf, type: 3}
-  - {fileID: 11500000, guid: 6e2318a192a14138aa3a763b896223c6, type: 3}
-  - {fileID: 11500000, guid: aac206ec1c6940568aeaea8628ebc3d8, type: 3}
-  - {fileID: 11500000, guid: 3e5378fbfe2143b08b14b8461b3e8e3d, type: 3}
+  - {fileID: 11500000, guid: 7949db70677b4a1c81bf66056027f370, type: 3}
   editorScripts: []
   releaseClassNames: []
