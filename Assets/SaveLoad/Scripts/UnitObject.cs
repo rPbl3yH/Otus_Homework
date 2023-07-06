@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace Homeworks.SaveLoad
 {
+    [Serializable]
     public sealed class UnitObject : MonoBehaviour
     {
         [SerializeField]
