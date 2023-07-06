@@ -1,40 +1,46 @@
 using System.Collections.Generic;
+using Homeworks.SaveLoad;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Homeworks.SaveLoad
+namespace SaveLoad.Scripts
 {
     public sealed class PlayerResources : MonoBehaviour
     {
         [ShowInInspector, ReadOnly]
-        private Dictionary<ResourceType, int> resources = new();
+        private Dictionary<ResourceType, int> _resources = new();
 
         public void SetResource(ResourceType resourceType, int resource)
         {
-            this.resources[resourceType] = resource;
+            _resources[resourceType] = resource;
         }
         
         public int GetResource(ResourceType resourceType)
         {
-            return this.resources[resourceType];
+            return _resources[resourceType];
         }
 
         public Dictionary<ResourceType, int> GetResources()
         {
-            return resources;
+            return _resources;
         }
 
         [ShowInInspector]
         public void AddResources(ResourceType resourceType, int resource)
         {
-            if (resources.ContainsKey(resourceType))
+            if (_resources.ContainsKey(resourceType))
             {
-                resources[resourceType] += resource;
+                _resources[resourceType] += resource;
             }
             else
             {
-                resources.Add(resourceType, resource);
+                _resources.Add(resourceType, resource);
             }
+        }
+
+        public void SetupResources(Dictionary<ResourceType,int> resources)
+        {
+            _resources = resources;
         }
     }
 }
