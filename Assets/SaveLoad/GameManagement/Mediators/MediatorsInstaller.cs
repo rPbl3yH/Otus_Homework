@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using SaveLoad.ResourcesObject.Mediator;
 using SaveLoad.Units.Mediator;
 using Sirenix.OdinInspector;
 
 namespace SaveLoad.GameManagement.Mediators
 {
-    public class MediatorInstaller
+    public class MediatorsInstaller
     {
         [ShowInInspector]
         private List<IGameMediator> _mediators = new List<IGameMediator>();
 
-        public MediatorInstaller()
+        public MediatorsInstaller()
         {
             GameContext.AddService(this);
         }
@@ -23,6 +24,7 @@ namespace SaveLoad.GameManagement.Mediators
         {
             _mediators.Add(new ResourcesMediator());
             _mediators.Add(new UnitsMediator());
+            _mediators.Add(new ResourcesObjectsMediator());
         }
     }
 }

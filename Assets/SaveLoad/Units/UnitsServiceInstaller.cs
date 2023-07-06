@@ -14,8 +14,6 @@ namespace SaveLoad.Units
         public void InitGame()
         {
             _unitsService = new UnitsService(_unitObjects);
-            
-            GameContext.AddService(_unitsService);
         }
     }
 }

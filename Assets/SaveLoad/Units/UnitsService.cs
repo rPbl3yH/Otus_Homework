@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Homeworks.SaveLoad;
+using SaveLoad.GameManagement;
 using UnityEngine;
 
 namespace SaveLoad.Units
@@ -11,11 +12,13 @@ namespace SaveLoad.Units
         public UnitsService(UnitObject[] units)
         {
             _units = units;
+            GameContext.AddService(this);
         }
 
         public UnitData[] GetUnitsData()
         {
             var list = new List<UnitData>();
+            
             foreach (var unitObject in _units)
             {
                 var unitPosition = unitObject.transform.position;
