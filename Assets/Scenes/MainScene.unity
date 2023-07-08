@@ -583,6 +583,7 @@ GameObject:
   - component: {fileID: 787372354}
   - component: {fileID: 787372353}
   - component: {fileID: 787372355}
+  - component: {fileID: 787372356}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -633,6 +634,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mouseInputObserver: {fileID: 77181925}
   _document: {fileID: 952267566}
+--- !u!114 &787372356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787372352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e4e9aad4714a59bdfe26efa730a854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hero: {fileID: 952267566}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,6 +738,9 @@ MonoBehaviour:
       value: 100
     Direction:
       value: {x: 0, y: 0, z: 0}
+  Fire:
+    Delay:
+      value: 0
 --- !u!4 &952267567
 Transform:
   m_ObjectHideFlags: 0

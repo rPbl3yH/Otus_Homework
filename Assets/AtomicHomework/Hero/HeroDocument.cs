@@ -18,5 +18,10 @@ namespace AtomicHomework.Hero
         [Section] 
         [SerializeField]
         public Rotate Rotate;
+        
+            
+        [Section]
+        [SerializeField] 
+        public Fire Fire;
     }
 }
