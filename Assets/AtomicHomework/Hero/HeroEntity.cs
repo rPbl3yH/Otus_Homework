@@ -1,11 +1,12 @@
 ﻿using Entities;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace AtomicHomework.Hero
 {
     public class HeroEntity : MonoEntityBase
     {
-        [SerializeField] private HeroModel _model;
+        [FormerlySerializedAs("_model")] [SerializeField] private HeroDocument _document;
         private void Awake()
         {
             

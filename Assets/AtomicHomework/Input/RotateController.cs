@@ -1,12 +1,13 @@
 ﻿using AtomicHomework.Hero;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace AtomicHomework.Input
 {
     public class RotateController : MonoBehaviour
     {
         [SerializeField] private MouseInputObserver _mouseInputObserver;
-        [SerializeField] private HeroModel _model;
+        [SerializeField] private HeroDocument _document;
 
         private void Awake()
         {
@@ -20,7 +21,7 @@ namespace AtomicHomework.Input
 
         private void OnDirectionChanged(Vector3 direction)
         {
-            _model.RotateDirection.Value = direction;
+            _document.Rotate.Direction.Value = direction;
         }
     }
 }

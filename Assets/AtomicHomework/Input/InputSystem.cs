@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AtomicHomework.Hero
+namespace AtomicHomework.Input
 {
     public class InputSystem : MonoBehaviour
     {

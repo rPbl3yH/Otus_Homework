@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 77181922}
-  _model: {fileID: 952267566}
+  _document: {fileID: 952267566}
 --- !u!4 &787372354
 Transform:
   m_ObjectHideFlags: 0
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseInputObserver: {fileID: 77181925}
-  _model: {fileID: 952267566}
+  _document: {fileID: 952267566}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,16 +712,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initOnAwake: 1
-  _transform: {fileID: 952267567}
-  _cameraTransform: {fileID: 2129226856}
-  Speed:
-    value: 2
-  RotationSpeed:
-    value: 100
-  RotateDirection:
-    value: {x: 0, y: 0, z: 0}
-  HitPoints:
-    value: 5
+  Transform: {fileID: 952267567}
+  Life:
+    HitPoints:
+      value: 3
+  Move:
+    Speed:
+      value: 5
+  Rotate:
+    RotationSpeed:
+      value: 100
+    Direction:
+      value: {x: 0, y: 0, z: 0}
 --- !u!4 &952267567
 Transform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using AtomicHomework.Input;
+using UnityEngine;
 using Zenject;
 
 namespace AtomicHomework.Hero
