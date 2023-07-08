@@ -18,6 +18,10 @@ namespace AtomicHomework.Input
                 direction.Normalize();
                 OnDirectionChanged?.Invoke(direction);
             }
+            else
+            {
+                OnDirectionChanged?.Invoke(Vector2.zero);
+            }
         }
     }
 }

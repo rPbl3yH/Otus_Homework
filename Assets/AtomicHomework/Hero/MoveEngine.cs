@@ -27,7 +27,7 @@ namespace AtomicHomework.Hero
         {
             if (_isMoveRequired)
             {
-                _transform.position += _direction * (_speed.Value * deltaTime);
+                _transform.Translate(_direction * (_speed.Value * deltaTime));
                 _isMoveRequired = false;
             }   
         }
