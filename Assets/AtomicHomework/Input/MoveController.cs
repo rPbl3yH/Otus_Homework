@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using AtomicHomework.Hero;
+using UnityEngine;
 
-namespace AtomicHomework.Hero
+namespace AtomicHomework.Input
 {
     public class MoveController : MonoBehaviour
     {

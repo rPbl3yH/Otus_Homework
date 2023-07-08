@@ -6,40 +6,44 @@ using UnityEngine;
 
 namespace AtomicHomework.Hero
 {
-    public class CameraMoveEngine: ILateUpdateListener
+    public class RotateEngine : IUpdateListener
     {
-        private Transform _target;
-        private Transform _cameraTransform;
-        private bool _isMoveRequired;
+        private Transform _transform;
+        private IAtomicValue<float> _speed;
+        private IAtomicValue<Vector3> _rotateDirection;
+
+        private bool _isRotateRequired;
         
-        public void Construct(Transform cameraTransform, Transform target)
+        public void Construct(Transform transform, IAtomicValue<float> speed, IAtomicValue<Vector3> rotateDirection)
         {
-            _cameraTransform = cameraTransform;
-            _target = target;
+            _transform = transform;
+            _speed = speed;
+            _rotateDirection = rotateDirection;
         }
 
-        public void Move()
+        public void Rotate()
         {
-            _isMoveRequired = true;
+            _isRotateRequired = true;
         }
 
-        public void LateUpdate(float deltaTime)
+        public void Update(float deltaTime)
         {
-            if (_isMoveRequired)
+            if (_isRotateRequired)
             {
-                _cameraTransform.position = _target.position;
+                _transform.Rotate(_rotateDirection.Value * (_speed.Value * deltaTime));
+                _isRotateRequired = false;
             }
         }
     }
+    
     
     public class HeroModel : DeclarativeModel
     {
         [SerializeField] private Transform _transform;
         [SerializeField] private Transform _cameraTransform;
         [SerializeField] public AtomicVariable<float> Speed;
-        
-        public AtomicEvent<Vector3> OnDirectionChanged;
-        public AtomicEvent<Vector3> OnRotateDirectionChanged;
+        [SerializeField] public AtomicVariable<float> RotationSpeed;
+        [SerializeField] public AtomicVariable<Vector3> RotateDirection;
 
         [SerializeField]
         public AtomicVariable<int> HitPoints ;
@@ -50,16 +54,20 @@ namespace AtomicHomework.Hero
         
         public MoveEngine MoveEngine = new();
         public CameraMoveEngine CameraMoveEngine = new();
+        public RotateEngine RotateEngine = new();
 
         public LateUpdateMechanics LateUpdateMechanics = new();
+        public UpdateMechanics UpdateMechanics = new();
         
         [Construct]
         public void Init()
         {
             MoveEngine.Construct(_transform, Speed);
             CameraMoveEngine.Construct(_cameraTransform, transform);
+            RotateEngine.Construct(_transform, RotationSpeed, RotateDirection);
 
             LateUpdateMechanics.OnUpdate(_ => CameraMoveEngine.Move());
+            UpdateMechanics.OnUpdate(_ => RotateEngine.Rotate());
             
             OnTakeDamage += damage =>
             {
@@ -75,17 +83,6 @@ namespace AtomicHomework.Hero
             };
 
             OnDeath += () => Debug.Log("Death");
-            
-            
-            // OnDirectionChanged += direction =>
-            // {
-            //     transform.Translate(direction);  
-            // };
-            //
-            // OnRotateDirectionChanged += direction =>
-            // {
-            //     transform.Rotate(direction);
-            // };
         }
     }
 }
