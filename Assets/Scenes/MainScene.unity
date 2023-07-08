@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 77181924}
   - component: {fileID: 77181923}
   - component: {fileID: 77181922}
+  - component: {fileID: 77181926}
+  - component: {fileID: 77181925}
   m_Layer: 0
   m_Name: InputSystem
   m_TagString: Untagged
@@ -181,6 +183,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &77181925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77181921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b370462746d45e3bcbd4dfea8380982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mouseInput: {fileID: 77181926}
+--- !u!114 &77181926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77181921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 569ccc2947287fc4fa3309271ea7918c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &178161228
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,8 +650,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initOnAwake: 1
-  _inputSystem: {fileID: 77181922}
-  _speed: 2
+  HitPoints:
+    value: 5
 --- !u!4 &952267567
 Transform:
   m_ObjectHideFlags: 0

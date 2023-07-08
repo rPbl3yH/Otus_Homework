@@ -1,20 +1,50 @@
 using Declarative;
+using Lessons.Gameplay.Atomic1;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace AtomicHomework.Hero
 {
     public class HeroModel : DeclarativeModel
     {
-        [SerializeField] private InputSystem _inputSystem;
-        [SerializeField] private float _speed;
-        
+        public AtomicEvent<Vector3> OnDirectionChanged;
+        public AtomicEvent<Vector3> OnRotateDirectionChanged;
+
+        [SerializeField]
+        public AtomicVariable<int> HitPoints ;
+        [ShowInInspector]
+        public AtomicEvent<int> OnTakeDamage = new();
+        [ShowInInspector]
+        public AtomicEvent OnDeath = new();
+
         [Construct]
-        public void Construct()
+        public void Init()
         {
-            _inputSystem.OnDirectionChanged += direction =>
+            OnTakeDamage += damage =>
             {
-                transform.Translate(direction * (_speed * Time.deltaTime));
+                HitPoints.Value -= damage;
             };
+
+            HitPoints.OnChanged += hitPoints =>
+            {
+                if (hitPoints <= 0)
+                {
+                    OnDeath?.Invoke();
+                }
+            };
+
+            OnDeath += () => Debug.Log("Death");
+            
+            
+            // OnDirectionChanged += direction =>
+            // {
+            //     transform.Translate(direction);
+            // };
+            //
+            // OnRotateDirectionChanged += direction =>
+            // {
+            //     transform.Rotate(direction);
+            // };
         }
     }
 }

@@ -9,7 +9,7 @@ namespace AtomicHomework.Hero
 
         private void Update()
         {
-            var direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            var direction = new Vector3(UnityEngine.Input.GetAxis("Horizontal"), 0, UnityEngine.Input.GetAxis("Vertical"));
             OnDirectionChanged?.Invoke(direction);
         }
     }
