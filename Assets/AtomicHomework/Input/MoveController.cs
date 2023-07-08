@@ -1,5 +1,6 @@
 ﻿using System;
-using AtomicHomework.Hero;
+using AtomicHomework.Entities.Components;
+using AtomicHomework.Hero.Entity;
 using UnityEngine;
 
 namespace AtomicHomework.Input
@@ -7,7 +8,7 @@ namespace AtomicHomework.Input
     public class MoveController : MonoBehaviour
     {
         [SerializeField] private InputSystem _input;
-        [SerializeField] private HeroDocument _document;
+        [SerializeField] private HeroEntity _heroEntity;
 
         private void Awake()
         {
@@ -21,7 +22,10 @@ namespace AtomicHomework.Input
 
         private void OnDirectionChanged(Vector3 direction)
         {
-            _document.Move.Engine.Move(direction);
+            if(_heroEntity.TryGet(out IMoveComponent component))
+            {
+                component.Move(direction);
+            }
         }
     }
 }

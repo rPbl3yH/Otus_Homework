@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AtomicHomework.Hero
 {
-    public class MoveEngine : IFixedUpdateListener
+    public class MoveEngine 
     {
         private Transform _transform;
         private Vector3 _direction;

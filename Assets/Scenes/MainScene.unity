@@ -604,7 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 77181922}
-  _document: {fileID: 952267566}
+  _heroEntity: {fileID: 952267568}
 --- !u!4 &787372354
 Transform:
   m_ObjectHideFlags: 0
@@ -706,6 +706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 952267567}
   - component: {fileID: 952267566}
+  - component: {fileID: 952267568}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -757,6 +758,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &952267568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952267565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c27b934bb0419fb8986b32916d8120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hero: {fileID: 952267566}
 --- !u!1 &1069934789
 GameObject:
   m_ObjectHideFlags: 0
