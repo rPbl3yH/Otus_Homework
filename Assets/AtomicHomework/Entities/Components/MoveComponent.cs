@@ -3,14 +3,9 @@ using UnityEngine;
 
 namespace AtomicHomework.Entities.Components
 {
-    public interface IMoveComponent
-    {
-        public void Move(Vector3 direction);
-    }
-    
     public class MoveComponent : IMoveComponent
     {
-        private IAtomicAction<Vector3> _onMove;
+        private readonly IAtomicAction<Vector3> _onMove;
         
         public MoveComponent(IAtomicAction<Vector3> onMove)
         {
