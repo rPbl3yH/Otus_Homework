@@ -1,6 +1,8 @@
-﻿namespace DefaultNamespace;
-
-public class EnemyDocument
+﻿
+namespace AtomicHomework.Atomic.Enemy.Document
 {
+    public class EnemyDocument
+    {
     
+    }
 }
