@@ -777,6 +777,10 @@ MonoBehaviour:
     SpawnPoint: {fileID: 814271095}
     Delay:
       value: 0
+    BulletCount:
+      value: 3
+    IsCanAttack:
+      value: 1
 --- !u!4 &952267567
 Transform:
   m_ObjectHideFlags: 0

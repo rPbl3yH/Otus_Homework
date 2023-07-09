@@ -13,7 +13,7 @@ namespace AtomicHomework.Bullet.Document
         public AtomicVariable<float> Speed;
 
         public FixedUpdateMechanics FixedUpdateMechanics = new();
-        public CollideDetectionMechanic CollideDetectionMechanic = new();
+        public CollideDetectionMechanic CollideDetectionMechanic;
 
         public AtomicVariable<int> Damage;
 
