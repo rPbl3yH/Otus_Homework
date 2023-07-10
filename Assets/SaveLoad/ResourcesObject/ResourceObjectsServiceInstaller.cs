@@ -1,19 +1,16 @@
 using Homeworks.SaveLoad;
-using SaveLoad.GameManagement;
-using SaveLoad.GameManagement.Listeners;
 using UnityEngine;
+using Zenject;
 
 namespace SaveLoad.ResourcesObject
 {
-    public class ResourceObjectsServiceInstaller : MonoBehaviour, IGameInitListener
+    public class ResourceObjectsServiceInstaller : MonoInstaller<ResourceObjectsServiceInstaller>
     {
         [SerializeField] private ResourceObject[] _resourceObjects;
 
-        private ResourcesObjectService _resourcesObjectService;
-
-        public void InitGame()
+        public override void InstallBindings()
         {
-            _resourcesObjectService = new ResourcesObjectService(_resourceObjects);
+            Container.Bind<ResourcesObjectService>().FromNew().AsSingle().WithArguments(_resourceObjects);
         }
     }
 }

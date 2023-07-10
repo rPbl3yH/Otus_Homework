@@ -8,9 +8,9 @@ namespace SaveLoad.GameManagement.Mediators
     {
         public override void InstallBindings()
         {
-            Container.Bind<ResourcesMediator>().FromNew().AsSingle();
-            Container.Bind<UnitsMediator>().FromNew().AsSingle();
-            Container.Bind<ResourcesObjectsMediator>().FromNew().AsSingle();
+            Container.Bind<IGameMediator>().To<ResourcesMediator>().FromNew().AsSingle();
+            Container.Bind<IGameMediator>().To<UnitsMediator>().FromNew().AsSingle();
+            Container.Bind<IGameMediator>().To<ResourcesObjectsMediator>().FromNew().AsSingle();
         }
     }
 }

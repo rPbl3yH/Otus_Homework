@@ -19,6 +19,7 @@ namespace SaveLoad.GameManagement
         [ShowInInspector]
         public void Save()
         {
+            Debug.Log("Game mediators = " + _gameMediators.Length);
             foreach (var gameMediator in _gameMediators)
             {
                 gameMediator.SaveData(_gameRepository);

@@ -5,13 +5,13 @@ namespace SaveLoad.GameManagement
 {
     public abstract class GameMediator<TData, TGameService> : IGameMediator
     {
+        [Inject]
+        private TGameService _service;
+        
         protected virtual string DataKey
         {
             get { return typeof(TData).Name; }
         }
-
-        [Inject]
-        private TGameService _service;
 
         void IGameMediator.SetupData(GameRepository repository)
         {

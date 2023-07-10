@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using Homeworks.SaveLoad;
-using SaveLoad.GameManagement.Listeners;
 using UnityEngine;
+using Zenject;
 
 namespace SaveLoad.Units
 {
-    public class UnitsServiceInstaller : MonoBehaviour, IGameInitListener
+    public class UnitsServiceInstaller : MonoInstaller<UnitsServiceInstaller>
     {
         [SerializeField] private List<UnitObject> _unitObjects;
 
         private UnitsService _unitsService;
 
-        public void InitGame()
+        public override void InstallBindings()
         {
-            _unitsService = new UnitsService(_unitObjects);
+            Container.Bind<UnitsService>().FromNew().AsSingle().WithArguments(_unitObjects);
         }
     }
 }

@@ -9,17 +9,13 @@
   <component name="ChangeListManager">
     <list default="true" id="27dae0f6-82d5-4efb-983c-be737cf9794d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Otus_Homevorks/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Otus_Homevorks/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/GameContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/ServiceLocator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/GameContext.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/ServiceLocator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/GameSaver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/GameSaver.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/Mediators/GameMediator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/Mediators/GameMediator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/Mediators/MediatorsInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/Mediators/MediatorsInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/SaveSystemInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/GameManagement/SaveSystemInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/ResourcesObject/ResourcesObjectService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/ResourcesObject/ResourcesObjectService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/ResourcesObject/ResourceObjectsServiceInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/ResourcesObject/ResourceObjectsServiceInstaller.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/Scene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/Scripts/PlayerResourcesInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/Scripts/PlayerResourcesInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/Units/UnitsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/Units/UnitsService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SaveLoad/Units/UnitsServiceInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SaveLoad/Units/UnitsServiceInstaller.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +123,7 @@
       <workItem from="1688534403216" duration="5852000" />
       <workItem from="1688996638892" duration="69000" />
       <workItem from="1688996743632" duration="689000" />
-      <workItem from="1689002880056" duration="1393000" />
+      <workItem from="1689002880056" duration="2164000" />
     </task>
     <servers />
   </component>
