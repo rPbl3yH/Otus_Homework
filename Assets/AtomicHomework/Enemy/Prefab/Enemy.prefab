@@ -214,9 +214,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initOnAwake: 1
+  Transform: {fileID: 5354221851535450184}
   Life:
     HitPoints:
       value: 1
+  Follow:
+    Speed:
+      value: 2
 --- !u!114 &5354221851535450185
 MonoBehaviour:
   m_ObjectHideFlags: 0

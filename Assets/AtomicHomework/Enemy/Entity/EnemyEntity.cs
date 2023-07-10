@@ -1,5 +1,6 @@
 ﻿using System;
 using AtomicHomework.Atomic.Enemy.Document;
+using AtomicHomework.Enemy.Document;
 using AtomicHomework.Entities.Components;
 using AtomicHomework.Hero;
 using Entities;
@@ -14,6 +15,7 @@ namespace AtomicHomework.Atomic.Enemy.Entity
         private void Awake()
         {
             Add(new TakeBulletDamageComponent(_enemyDocument.Life.OnTakeDamage));
+            Add(new FollowComponent(_enemyDocument.Follow.OnFollow));
         }
     }
 }
