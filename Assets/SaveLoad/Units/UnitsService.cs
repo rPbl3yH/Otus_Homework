@@ -12,7 +12,7 @@ namespace SaveLoad.Units
         public UnitsService(List<UnitObject> units)
         {
             _units = units;
-            GameContext.AddService(this);
+            ServiceLocator.AddService(this);
         }
         
         public List<UnitObject> GetUnits()

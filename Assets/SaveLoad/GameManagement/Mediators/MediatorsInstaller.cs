@@ -1,30 +1,16 @@
-using System.Collections.Generic;
 using SaveLoad.ResourcesObject.Mediator;
 using SaveLoad.Units.Mediator;
-using Sirenix.OdinInspector;
+using Zenject;
 
 namespace SaveLoad.GameManagement.Mediators
 {
-    public class MediatorsInstaller
+    public class MediatorsInstaller : MonoInstaller<MediatorsInstaller>
     {
-        [ShowInInspector]
-        private List<IGameMediator> _mediators = new List<IGameMediator>();
-
-        public MediatorsInstaller()
+        public override void InstallBindings()
         {
-            GameContext.AddService(this);
-        }
-
-        public List<IGameMediator> GetMediators()
-        {
-            return _mediators;
-        }
-
-        public void Install()
-        {
-            _mediators.Add(new ResourcesMediator());
-            _mediators.Add(new UnitsMediator());
-            _mediators.Add(new ResourcesObjectsMediator());
+            Container.Bind<ResourcesMediator>().FromNew().AsSingle();
+            Container.Bind<UnitsMediator>().FromNew().AsSingle();
+            Container.Bind<ResourcesObjectsMediator>().FromNew().AsSingle();
         }
     }
 }

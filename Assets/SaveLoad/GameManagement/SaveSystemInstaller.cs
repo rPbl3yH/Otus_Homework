@@ -1,29 +1,13 @@
-using SaveLoad.GameManagement.Listeners;
-using SaveLoad.GameManagement.Mediators;
-using Sirenix.OdinInspector;
-using UnityEngine;
+using Zenject;
 
 namespace SaveLoad.GameManagement
 {
-    public class SaveSystemInstaller : MonoBehaviour, IGameInitListener
+    public class SaveSystemInstaller : MonoInstaller<SaveSystemInstaller>
     {
-        private MediatorsInstaller _mediatorsInstaller;
-        [ShowInInspector]
-        private GameRepository _gameRepository;
-        [ShowInInspector]
-        private GameSaver _gameSaver;
-
-        public void InitGame()
+        public override void InstallBindings()
         {
-            Install();
-        }
-
-        private void Install()
-        {
-            _gameRepository = new GameRepository();
-            _mediatorsInstaller = new MediatorsInstaller();
-            _mediatorsInstaller.Install();
-            _gameSaver = new GameSaver(_mediatorsInstaller.GetMediators().ToArray(), _gameRepository);
+            Container.Bind<GameRepository>().FromNew().AsSingle();
+            Container.Bind<GameSaver>().FromNew().AsSingle();
         }
     }
 }

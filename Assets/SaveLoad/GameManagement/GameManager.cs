@@ -4,17 +4,25 @@ using System.Linq;
 using SaveLoad.GameManagement.Listeners;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace SaveLoad.GameManagement
 {
     public class GameManager : MonoBehaviour
     {
+        [Inject]
+        [ShowInInspector]
+        private GameRepository _gameRepository;
+        
+        [Inject]
+        [ShowInInspector]
+        private GameSaver _gameSaver;
 
         private List<IGameListener> _listeners = new List<IGameListener>();
 
         private void Awake()
         {
-            GameContext.Clear();
+            ServiceLocator.Clear();
         }
 
         [ShowInInspector]

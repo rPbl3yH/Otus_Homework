@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace SaveLoad.GameManagement
 {
@@ -8,6 +9,7 @@ namespace SaveLoad.GameManagement
         private readonly IGameMediator[] _gameMediators;
         private readonly GameRepository _gameRepository;
 
+        [Inject]
         public GameSaver(IGameMediator[] gameMediators, GameRepository gameRepository)
         {
             _gameMediators = gameMediators;

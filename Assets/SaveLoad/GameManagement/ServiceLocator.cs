@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SaveLoad.GameManagement
 {
-    public static class GameContext
+    public static class ServiceLocator
     {
         private static List<object> _services = new List<object>();
 

@@ -12,7 +12,7 @@ namespace SaveLoad.ResourcesObject
         public ResourcesObjectService(ResourceObject[] resourceObjects)
         {
             _resourceObjects = resourceObjects;
-            GameContext.AddService(this);
+            ServiceLocator.AddService(this);
         }
 
         public void SetupData(ResourcesObjectData[] data)

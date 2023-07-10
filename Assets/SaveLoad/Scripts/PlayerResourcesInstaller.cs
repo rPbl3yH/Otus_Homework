@@ -10,7 +10,7 @@ namespace SaveLoad.Scripts
         
         public void InitGame()
         {
-            GameContext.AddService(_playerResources);            
+            ServiceLocator.AddService(_playerResources);            
         }
     }
 }

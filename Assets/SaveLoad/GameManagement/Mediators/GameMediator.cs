@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Zenject;
 
 namespace SaveLoad.GameManagement
 {
@@ -9,25 +10,25 @@ namespace SaveLoad.GameManagement
             get { return typeof(TData).Name; }
         }
 
+        [Inject]
+        private TGameService _service;
+
         void IGameMediator.SetupData(GameRepository repository)
         {
-            var service = GameContext.GetService<TGameService>();
-
             if (repository.TryGetData(DataKey, out var json))
             {
                 var data = JsonConvert.DeserializeObject<TData>(json);
-                SetupFromData(service, data);
+                SetupFromData(_service, data);
             }
             else
             {
-                SetupByDefault(service);
+                SetupByDefault(_service);
             }
         }
 
         void IGameMediator.SaveData(GameRepository repository)
         {
-            var service = GameContext.GetService<TGameService>();
-            var data = ConvertToData(service);
+            var data = ConvertToData(_service);
             var json = JsonConvert.SerializeObject(data);
             repository.SetData(DataKey, json);
         }
