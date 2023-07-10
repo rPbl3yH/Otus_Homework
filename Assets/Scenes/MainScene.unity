@@ -740,6 +740,7 @@ GameObject:
   - component: {fileID: 952267566}
   - component: {fileID: 952267568}
   - component: {fileID: 952267569}
+  - component: {fileID: 952267570}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -783,6 +784,12 @@ MonoBehaviour:
     IsCanAttack:
       value: 1
     TimerMechanics: {fileID: 952267569}
+    FireCooldown:
+      CoolDown:
+        value: 1
+      TimerMechanics: {fileID: 952267570}
+      IsCooldown:
+        value: 0
 --- !u!4 &952267567
 Transform:
   m_ObjectHideFlags: 0
@@ -813,6 +820,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hero: {fileID: 952267566}
 --- !u!114 &952267569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952267565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e44057bc37148d3b2bc24ac1c23f9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &952267570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
