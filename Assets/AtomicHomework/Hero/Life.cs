@@ -21,7 +21,10 @@ namespace AtomicHomework.Hero
         {
             OnTakeDamage += damage =>
             {
-                HitPoints.Value -= damage;
+                if (HitPoints.Value > 0)
+                {
+                    HitPoints.Value -= damage;
+                }
             };
 
             HitPoints.OnChanged += hitPoints =>
