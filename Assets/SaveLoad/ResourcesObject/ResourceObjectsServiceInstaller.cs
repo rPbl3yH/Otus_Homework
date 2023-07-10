@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Homeworks.SaveLoad;
 using UnityEngine;
 using Zenject;
@@ -6,7 +7,7 @@ namespace SaveLoad.ResourcesObject
 {
     public class ResourceObjectsServiceInstaller : MonoInstaller<ResourceObjectsServiceInstaller>
     {
-        [SerializeField] private ResourceObject[] _resourceObjects;
+        [SerializeField] private List<ResourceObject> _resourceObjects;
 
         public override void InstallBindings()
         {

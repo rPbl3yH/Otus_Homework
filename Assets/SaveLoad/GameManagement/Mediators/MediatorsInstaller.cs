@@ -10,7 +10,7 @@ namespace SaveLoad.GameManagement.Mediators
         {
             Container.Bind<IGameMediator>().To<ResourcesMediator>().FromNew().AsSingle();
             Container.Bind<IGameMediator>().To<UnitsMediator>().FromNew().AsSingle();
-            Container.Bind<IGameMediator>().To<ResourcesObjectsMediator>().FromNew().AsSingle();
+            Container.Bind<IGameMediator>().To<ResourcesObjectMediator>().FromNew().AsSingle();
         }
     }
 }
