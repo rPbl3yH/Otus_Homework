@@ -17,5 +17,9 @@ namespace AtomicHomework.Enemy.Document
 
         [Section]
         public Follow Follow;
+
+        [Section]
+        public Attack Attack;
     }
+    
 }
