@@ -6,9 +6,11 @@ namespace SaveLoad.GameManagement
 {
     public class GameRepository
     {
-        private const string GAME_PREFS = "GameState";
+        private const string GamePrefs = "GameState";
+        private const string Password = "lksdfj2lafsd";
         private Dictionary<string, string> gameState = new Dictionary<string, string>();
-
+        private ES3Settings _settings = new ES3Settings(ES3.EncryptionType.AES, Password);
+        
         public bool TryGetData(string key, out string data)
         {
             return gameState.TryGetValue(key, out data);
@@ -28,9 +30,10 @@ namespace SaveLoad.GameManagement
         {
             Dictionary<string, string> localState = new();
 
-            if (PlayerPrefs.HasKey(GAME_PREFS))
+            if (ES3.KeyExists(GamePrefs))
             {
-                var localJson = PlayerPrefs.GetString(GAME_PREFS);
+                var localJson = ES3.Load<string>(GamePrefs);
+                Debug.Log(localJson);
                 localState = JsonConvert.DeserializeObject<Dictionary<string, string>>(localJson);
             }
         }
@@ -38,7 +41,8 @@ namespace SaveLoad.GameManagement
         public void SaveState()
         {
             var json = JsonConvert.SerializeObject(gameState);
-            PlayerPrefs.SetString(GAME_PREFS, json);
+            ES3.Save(GamePrefs, json);
+            //PlayerPrefs.SetString(GamePrefs, json);
         }
     }
 }

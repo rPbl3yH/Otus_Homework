@@ -17,12 +17,12 @@ MonoBehaviour:
     path: SaveFile.es3
     encryptionType: 0
     compressionType: 0
-    encryptionPassword: password
+    encryptionPassword: Sherlock
     directory: 0
     format: 0
     prettyPrint: 1
-    bufferSize: 2048
-    saveChildren: 1
+    bufferSize: 4096
+    saveChildren: 0
     typeChecking: 1
     safeReflection: 1
     memberReferenceMode: 0
