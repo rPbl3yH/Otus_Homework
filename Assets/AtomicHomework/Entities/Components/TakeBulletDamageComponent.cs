@@ -4,9 +4,9 @@ namespace AtomicHomework.Entities.Components
 {
     class TakeBulletDamageComponent : ITakeBulletDamageComponent
     {
-        private readonly AtomicAction<int> _onTakeDamage;
+        private readonly IAtomicAction<int> _onTakeDamage;
 
-        public TakeBulletDamageComponent(AtomicAction<int> onTakeDamage)
+        public TakeBulletDamageComponent(IAtomicAction<int> onTakeDamage)
         {
             _onTakeDamage = onTakeDamage;
         }

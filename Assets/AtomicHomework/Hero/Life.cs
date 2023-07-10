@@ -35,4 +35,5 @@ namespace AtomicHomework.Hero
             OnDeath += () => Debug.Log("Death");
         }
     }
+
 }

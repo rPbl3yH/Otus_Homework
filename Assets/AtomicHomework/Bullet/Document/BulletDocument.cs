@@ -27,9 +27,10 @@ namespace AtomicHomework.Bullet.Document
 
             CollideDetectionMechanic.OnTriggerEntered += entity =>
             {
-                if (entity.TryGet(out ITakeDamageComponent takeDamageComponent))
+                if (entity.TryGet(out ITakeBulletDamageComponent takeDamageComponent))
                 {
                     takeDamageComponent.TakeDamage(Damage.Value);
+                    Destroy(gameObject);
                 }
             };
         }

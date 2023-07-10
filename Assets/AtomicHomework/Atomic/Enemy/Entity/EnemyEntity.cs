@@ -1,7 +1,19 @@
-﻿namespace AtomicHomework.Atomic.Enemy.Entity
+﻿using System;
+using AtomicHomework.Atomic.Enemy.Document;
+using AtomicHomework.Entities.Components;
+using AtomicHomework.Hero;
+using Entities;
+using UnityEngine;
+
+namespace AtomicHomework.Atomic.Enemy.Entity
 {
-    public class EnemyEntity
+    public class EnemyEntity : MonoEntityBase
     {
+        [SerializeField] private EnemyDocument _enemyDocument;
         
+        private void Awake()
+        {
+            Add(new TakeBulletDamageComponent(_enemyDocument.Life.OnTakeDamage));
+        }
     }
 }

@@ -161,7 +161,7 @@ MonoBehaviour:
     value: 5
   CollideDetectionMechanic: {fileID: 2626181354368101288}
   Damage:
-    value: 0
+    value: 1
 --- !u!1 &8097913934266954184
 GameObject:
   m_ObjectHideFlags: 0
