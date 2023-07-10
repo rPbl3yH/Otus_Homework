@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using SaveLoad.GameManagement.Listeners;
@@ -10,7 +11,12 @@ namespace SaveLoad.GameManagement
     {
 
         private List<IGameListener> _listeners = new List<IGameListener>();
-        
+
+        private void Awake()
+        {
+            GameContext.Clear();
+        }
+
         [ShowInInspector]
         public void StartGame()
         {

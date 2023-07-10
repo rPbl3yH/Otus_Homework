@@ -7,6 +7,11 @@ namespace SaveLoad.GameManagement
     {
         private static List<object> _services = new List<object>();
 
+        public static void Clear()
+        {
+            _services.Clear();
+        }
+        
         public static T GetService<T>() {
             foreach (var service in _services) {
                 if (service is T result) {
