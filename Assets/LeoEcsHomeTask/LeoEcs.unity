@@ -483,14 +483,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1a3d8037bbd8a42a10c9414097657a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sharedData:
-    BorderX: 5
+  _sharedBlueData:
+    BorderX: 10
     BorderZ: 10
-    SpawnCount: 10
+    SpawnCount: 5
     Path: Cube
-    Health: 5
+    Health: 3
     Damage: 1
-    Speed: 1
+    Speed: 2
+  _sharedRedData:
+    BorderX: 5
+    BorderZ: 5
+    SpawnCount: 30
+    Path: Cube
+    Health: 3
+    Damage: 1
+    Speed: 5
 --- !u!4 &1805053374
 Transform:
   m_ObjectHideFlags: 0

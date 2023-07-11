@@ -8,7 +8,9 @@ namespace LeoEcsHomeTask {
     sealed class EcsStartup : MonoBehaviour {
         EcsWorld _world;        
         IEcsSystems _systems;
-        [SerializeField] private SharedData _sharedData;
+        [SerializeField] private SharedBlueData _sharedBlueData;
+        [SerializeField] private SharedRedData _sharedRedData;
+        
         void Start () {
             _world = new EcsWorld ();
             _systems = new EcsSystems (_world);
@@ -17,6 +19,7 @@ namespace LeoEcsHomeTask {
                 .Add(new BlockInitializer())
                 .Add(new WaypointsInitializer())
                 .Add(new BlockSpawner())
+                .Add(new RedBlockSpawner())
                 .Add(new MovementSystem())
                 // register additional worlds here, for example:
                 // .AddWorld (new EcsWorld (), "events")
@@ -25,7 +28,8 @@ namespace LeoEcsHomeTask {
                 // .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ("events"))
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
 #endif
-                .Inject(_sharedData)
+                .Inject(_sharedBlueData)
+                .Inject(_sharedRedData)
                 .Init ();
         }
 

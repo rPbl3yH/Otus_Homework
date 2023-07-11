@@ -16,4 +16,16 @@ namespace LeoEcs.Systems
 
         public int Speed;
     }
+
+    [Serializable]
+    public class SharedBlueData : SharedData
+    {
+        
+    }
+
+    [Serializable]
+    public class SharedRedData : SharedData
+    {
+        
+    }
 }

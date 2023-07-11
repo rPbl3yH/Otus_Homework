@@ -16,6 +16,7 @@ namespace LeoEcsHomeTask.Systems
             EcsPool<DamageComponent> damagePool = world.GetPool<DamageComponent>();
             EcsPool<BlockViewComponent> blockViewPool = world.GetPool<BlockViewComponent>();
             EcsPool<WaypointComponent> waypointPool = world.GetPool<WaypointComponent>();
+            EcsPool<TeamComponent> teamPool = world.GetPool<TeamComponent>();
 
             for (int i = 0; i < _data.Value.SpawnCount; i++)
             {
@@ -25,7 +26,9 @@ namespace LeoEcsHomeTask.Systems
                 damagePool.Add(entity).DamageValue = _data.Value.Damage;
                 colorPool.Add(entity);
                 waypointPool.Add(entity);
+                teamPool.Add(entity);
             }
         }
     }
+
 }
