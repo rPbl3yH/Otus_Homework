@@ -13,6 +13,7 @@ namespace LeoEcsHomeTask.Systems
         public void Init(IEcsSystems systems)
         {
             var waypointPool = _waypointsFilter.Pools.Inc1;
+            
             foreach (var entity in _waypointsFilter.Value)
             {
                 ref WaypointComponent waypointComponent = ref waypointPool.Get(entity);

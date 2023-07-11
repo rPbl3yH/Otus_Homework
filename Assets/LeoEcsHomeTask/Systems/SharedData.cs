@@ -13,5 +13,7 @@ namespace LeoEcs.Systems
 
         public int Health;
         public int Damage;
+
+        public int Speed;
     }
 }
