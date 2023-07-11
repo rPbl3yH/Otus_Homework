@@ -7,9 +7,7 @@ namespace SaveLoad.GameManagement
     public class GameRepository
     {
         private const string GamePrefs = "GameState";
-        private const string Password = "lksdfj2lafsd";
-        private Dictionary<string, string> gameState = new Dictionary<string, string>();
-        private ES3Settings _settings = new ES3Settings(ES3.EncryptionType.AES, Password);
+        private Dictionary<string, string> gameState = new();
         
         public bool TryGetData(string key, out string data)
         {
@@ -33,7 +31,6 @@ namespace SaveLoad.GameManagement
             if (ES3.KeyExists(GamePrefs))
             {
                 var localJson = ES3.Load<string>(GamePrefs);
-                Debug.Log(localJson);
                 localState = JsonConvert.DeserializeObject<Dictionary<string, string>>(localJson);
             }
         }
