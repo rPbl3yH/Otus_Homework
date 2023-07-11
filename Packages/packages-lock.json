@@ -1,5 +1,26 @@
 {
   "dependencies": {
+    "com.leopotam.ecslite": {
+      "version": "https://github.com/Leopotam/ecslite.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "957b3bb310ec49ab87d3e964f737a7c7e969f282"
+    },
+    "com.leopotam.ecslite.di": {
+      "version": "https://github.com/Leopotam/ecslite-di.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0709e936b4ee68ad834276d5a75a3931ed7dcbbe"
+    },
+    "com.leopotam.ecslite.unityeditor": {
+      "version": "https://github.com/Leopotam/ecslite-unityeditor.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "133a7d2881afc87de3097451fa70aa192ff4afcd"
+    },
     "com.unity.burst": {
       "version": "1.6.6",
       "depth": 1,
