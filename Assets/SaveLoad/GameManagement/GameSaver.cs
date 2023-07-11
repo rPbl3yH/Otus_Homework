@@ -13,6 +13,10 @@ namespace SaveLoad.GameManagement
         public GameSaver(IGameMediator[] gameMediators, GameRepository gameRepository)
         {
             _gameMediators = gameMediators;
+            foreach (var gameMediator in _gameMediators)
+            {
+                //Debug.Log(gameMediator.GetType().Name);
+            }
             _gameRepository = gameRepository;
         }
 
