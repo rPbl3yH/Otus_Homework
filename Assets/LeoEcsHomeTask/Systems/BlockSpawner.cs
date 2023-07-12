@@ -1,4 +1,5 @@
 ﻿using LeoEcs.Systems;
+using LeoEcsHomeTask.Views;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace LeoEcsHomeTask.Systems
 
         public void Init(IEcsSystems systems)
         {
+            var world = systems.GetWorld();
             var waypointsPool = _blockFilter.Pools.Inc1;
             var blockViewPool = _blockFilter.Pools.Inc2;
             var colorPool = _blockFilter.Pools.Inc3;
@@ -24,13 +26,16 @@ namespace LeoEcsHomeTask.Systems
                 ref var waypointComponent = ref waypointsPool.Get(entity);
                 
                 var newObject = Object.Instantiate(
-                    Resources.Load<GameObject>(_unitData.Value.Path),
+                    Resources.Load<EcsMonoObject>(_unitData.Value.Path),
                     waypointComponent.StartPos,
                     Quaternion.identity
                 );
                 
+                newObject.Init(world);
+                newObject.PackEntity(entity);
+                
                 ref var blockViewComponent = ref blockViewPool.Get(entity);
-                blockViewComponent.View = newObject;
+                blockViewComponent.View = newObject.gameObject;
 
                 ref var teamComponent = ref teamPool.Get(entity);
                 
