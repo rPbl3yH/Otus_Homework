@@ -5,11 +5,12 @@ using UnityEngine;
 
 namespace LeoEcsHomeTask.Systems
 {
-    public class ColorizeSystem : IEcsRunSystem
+    public class UnitVisionSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<UnitVisionComponent>> _visionFilter;
         private readonly EcsPoolInject<UnitVisionComponent> _visionPool;
         private readonly EcsPoolInject<ColorComponent> _colorPool;
+        private readonly EcsPoolInject<BulletSpawnComponent> _bulletSpawnPool;
         private readonly EcsWorldInject _world;
         
         public void Run(IEcsSystems systems)
@@ -18,12 +19,11 @@ namespace LeoEcsHomeTask.Systems
             {
                 ref var unitVision = ref _visionPool.Value.Get(entity);
 
-                (int, int) entitiesCollide = PackerEntityUtils.UnpackEntities(_world.Value,
-                    unitVision.FirstCollide.PackedEntity, unitVision.SecondCollide.PackedEntity);
-
-                ref var firstColor = ref _colorPool.Value.Get(entitiesCollide.Item1);
-
-                ref var secondColor = ref _colorPool.Value.Get(entitiesCollide.Item2);
+                int newEntity = _world.Value.NewEntity();
+                ref BulletSpawnComponent bulletSpawn = ref _bulletSpawnPool.Value.Add(newEntity);
+                bulletSpawn.SourceUnit = unitVision.FirstCollide;
+                bulletSpawn.TargetUnit = unitVision.SecondCollide;
+                
                 _world.Value.DelEntity(entity);
             }
         }

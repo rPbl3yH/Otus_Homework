@@ -11,16 +11,16 @@ namespace LeoEcsHomeTask.Systems
         public void Init(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            AddEntity(world, _redData.Value);
-            AddEntity(world, _blueData.Value);
+            AddEntities(world, _redData.Value);
+            AddEntities(world, _blueData.Value);
         }
 
-        private void AddEntity(EcsWorld world, SharedData data)
+        private void AddEntities(EcsWorld world, SharedData data)
         {
             EcsPool<HealthComponent> healthPool = world.GetPool<HealthComponent>();
             EcsPool<ColorComponent> colorPool = world.GetPool<ColorComponent>();
             EcsPool<DamageComponent> damagePool = world.GetPool<DamageComponent>();
-            EcsPool<BlockViewComponent> blockViewPool = world.GetPool<BlockViewComponent>();
+            EcsPool<ViewComponent> blockViewPool = world.GetPool<ViewComponent>();
             EcsPool<WaypointComponent> waypointPool = world.GetPool<WaypointComponent>();
             EcsPool<TeamComponent> teamPool = world.GetPool<TeamComponent>();
 

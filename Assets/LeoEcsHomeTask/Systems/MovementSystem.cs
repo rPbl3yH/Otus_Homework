@@ -7,9 +7,9 @@ namespace LeoEcsHomeTask.Systems
 {
     public class MovementSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<WaypointComponent, BlockViewComponent>> _blockFilter;
+        private readonly EcsFilterInject<Inc<WaypointComponent, ViewComponent>> _blockFilter;
         private readonly EcsPoolInject<WaypointComponent> _waypointPool;
-        private readonly EcsPoolInject<BlockViewComponent> _blockViewPool;
+        private readonly EcsPoolInject<ViewComponent> _blockViewPool;
         private readonly EcsCustomInject<SharedData> _data;
         
         public void Run(IEcsSystems systems)

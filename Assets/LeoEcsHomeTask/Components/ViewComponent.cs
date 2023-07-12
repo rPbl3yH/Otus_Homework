@@ -2,7 +2,7 @@
 
 namespace LeoEcsHomeTask
 {
-    public struct BlockViewComponent
+    public struct ViewComponent
     {
         public GameObject View;
     }

@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace LeoEcsHomeTask.Systems
 {
-    public class BlockSpawner : IEcsInitSystem
+    public class UnitSpawner : IEcsInitSystem
     {
-        private readonly EcsFilterInject<Inc<WaypointComponent, BlockViewComponent, ColorComponent, TeamComponent>> _blockFilter;
+        private readonly EcsFilterInject<Inc<WaypointComponent, ViewComponent, ColorComponent, TeamComponent>> _unitFilter;
         private readonly EcsCustomInject<SharedBlueData> _blueData;
         private readonly EcsCustomInject<SharedRedData> _redData;
         private readonly EcsCustomInject<UnitData> _unitData;
@@ -16,12 +16,12 @@ namespace LeoEcsHomeTask.Systems
         public void Init(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var waypointsPool = _blockFilter.Pools.Inc1;
-            var blockViewPool = _blockFilter.Pools.Inc2;
-            var colorPool = _blockFilter.Pools.Inc3;
-            var teamPool = _blockFilter.Pools.Inc4;
+            var waypointsPool = _unitFilter.Pools.Inc1;
+            var blockViewPool = _unitFilter.Pools.Inc2;
+            var colorPool = _unitFilter.Pools.Inc3;
+            var teamPool = _unitFilter.Pools.Inc4;
             
-            foreach (var entity in _blockFilter.Value)
+            foreach (var entity in _unitFilter.Value)
             {
                 ref var waypointComponent = ref waypointsPool.Get(entity);
                 

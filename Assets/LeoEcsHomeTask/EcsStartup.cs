@@ -19,9 +19,9 @@ namespace LeoEcsHomeTask {
                 // register your systems here, for example:
                 .Add(new BlockEntityInitializer())
                 .Add(new WaypointsInitializer())
-                .Add(new BlockSpawner())
+                .Add(new UnitSpawner())
                 .Add(new MovementSystem())
-                .Add(new ColorizeSystem())
+                .Add(new UnitVisionSystem())
                 // register additional worlds here, for example:
                 // .AddWorld (new EcsWorld (), "events")
 #if UNITY_EDITOR
