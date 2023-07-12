@@ -547,7 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sharedBlueData:
     SpawnPoint: {fileID: 13015225}
-    SpawnDistance: 3
+    SpawnDistance: 5
     SpawnCount: 5
     Health: 3
     Damage: 1
@@ -556,7 +556,7 @@ MonoBehaviour:
     IsRed: 0
   _sharedRedData:
     SpawnPoint: {fileID: 21090651}
-    SpawnDistance: 3
+    SpawnDistance: 5
     SpawnCount: 10
     Health: 3
     Damage: 1

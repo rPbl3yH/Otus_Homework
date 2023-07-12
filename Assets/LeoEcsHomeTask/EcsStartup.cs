@@ -21,6 +21,7 @@ namespace LeoEcsHomeTask {
                 .Add(new WaypointsInitializer())
                 .Add(new BlockSpawner())
                 .Add(new MovementSystem())
+                .Add(new ColorizeSystem())
                 // register additional worlds here, for example:
                 // .AddWorld (new EcsWorld (), "events")
 #if UNITY_EDITOR
