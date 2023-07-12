@@ -31,16 +31,16 @@ namespace LeoEcsHomeTask.Systems
                 ref var unitTeam = ref _bulletFilter.Pools.Inc4.Get(collideEntity.Item1);
                 team.IsRed = unitTeam.IsRed;
 
-                
-
                 ref var unitView = ref _bulletFilter.Pools.Inc2.Get(collideEntity.Item1);
-
-                damage.DamageValue = _bulletData.Value.Damage;
+                ref var targetUnitView = ref _bulletFilter.Pools.Inc2.Get(collideEntity.Item2);
                 
+                damage.DamageValue = _bulletData.Value.Damage;
+
+                var position = unitView.View.transform.position;
                 var bullet = Object.Instantiate(
                     Resources.Load<EcsMonoObject>(_bulletData.Value.Path),
-                    unitView.View.transform.position,
-                    Quaternion.identity
+                    position,
+                    Quaternion.LookRotation(targetUnitView.View.transform.position - position)
                 );
 
                 view.View = bullet.gameObject;

@@ -24,6 +24,7 @@ namespace LeoEcsHomeTask {
                 .Add(new MovementSystem())
                 .Add(new UnitVisionSystem())
                 .Add(new BulletSpawnerSystem())
+                .Add(new BulletMovementSystem())
                 // register additional worlds here, for example:
                 // .AddWorld (new EcsWorld (), "events")
 #if UNITY_EDITOR
