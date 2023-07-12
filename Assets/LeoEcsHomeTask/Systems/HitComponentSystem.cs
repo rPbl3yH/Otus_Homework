@@ -10,8 +10,6 @@ namespace LeoEcsHomeTask.Systems
         private readonly EcsFilterInject<Inc<DamageComponent, ViewComponent, TeamComponent>> _bulletFilter;
         private readonly EcsFilterInject<Inc<HitComponent>> _hitFilter;
         private readonly EcsPoolInject<HealthComponent> _healthPool;
-        private readonly EcsCustomInject<UnitData> _unitData;
-        private readonly EcsCustomInject<BulletData> _bulletData;
         private readonly EcsWorldInject _world;
         
         public void Run(IEcsSystems systems)

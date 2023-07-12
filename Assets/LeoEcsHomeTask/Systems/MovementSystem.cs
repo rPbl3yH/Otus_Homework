@@ -18,21 +18,24 @@ namespace LeoEcsHomeTask.Systems
             {
                 ref var blockView = ref _blockViewPool.Value.Get(entity);
                 ref var waypoint = ref _waypointPool.Value.Get(entity);
-                
-                blockView.View.transform.position = Vector3.MoveTowards(
-                    blockView.View.transform.position, 
-                    waypoint.TargetPos,
-                    Time.deltaTime * _data.Value.Speed);
-                
-                if((blockView.View.transform.position - waypoint.StartPos).sqrMagnitude < 0.1f)
-                {
-                    waypoint.TargetPos = waypoint.EndPos;
-                }
 
-                if ((blockView.View.transform.position - waypoint.EndPos).sqrMagnitude < 0.1f)
+                if (blockView.View != null)
                 {
-                    waypoint.TargetPos = waypoint.StartPos;
-                }                
+                    blockView.View.transform.position = Vector3.MoveTowards(
+                        blockView.View.transform.position, 
+                        waypoint.TargetPos,
+                        Time.deltaTime * _data.Value.Speed);
+                
+                    if((blockView.View.transform.position - waypoint.StartPos).sqrMagnitude < 0.1f)
+                    {
+                        waypoint.TargetPos = waypoint.EndPos;
+                    }
+
+                    if ((blockView.View.transform.position - waypoint.EndPos).sqrMagnitude < 0.1f)
+                    {
+                        waypoint.TargetPos = waypoint.StartPos;
+                    }  
+                }
             }
         }
     }

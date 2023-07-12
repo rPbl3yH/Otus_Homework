@@ -15,8 +15,11 @@ namespace LeoEcsHomeTask
             foreach (var entity in _bulletFilter.Value)
             {
                 ref var view = ref _bulletFilter.Pools.Inc1.Get(entity);
-                
-                view.View.transform.Translate(Vector3.forward * _bulletData.Value.Speed * Time.deltaTime);
+
+                if (view.View != null)
+                {
+                    view.View.transform.Translate(Vector3.forward * _bulletData.Value.Speed * Time.deltaTime);
+                }
             }
         }
     }

@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13015224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.071734905, y: -0.03768444, z: 9.9244175}
+  m_LocalPosition: {x: 20.428265, y: -0.03768444, z: 20.174417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -178,7 +178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21090650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.071734905, y: -0.03768444, z: -10.0755825}
+  m_LocalPosition: {x: -20.071735, y: -0.03768444, z: -20.075583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -277,7 +277,7 @@ Transform:
   m_GameObject: {fileID: 405940073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -475,8 +475,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221830852}
-  m_LocalRotation: {x: -0.36258763, y: -0.6110567, z: 0.37029055, w: -0.5983518}
-  m_LocalPosition: {x: -6.7009697, y: 12.662107, z: 0.06367351}
+  m_LocalRotation: {x: -0.35526687, y: -0.6095407, z: 0.35209173, w: -0.6150423}
+  m_LocalPosition: {x: -20.638256, y: 39.0276, z: -0.1426369}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -547,16 +547,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sharedBlueData:
     SpawnPoint: {fileID: 13015225}
-    SpawnDistance: 5
-    SpawnCount: 5
+    SpawnDistance: 10
+    SpawnCount: 100
     Health: 3
     Speed: 3
     Color: {r: 0.08018869, g: 0.6690244, b: 1, a: 1}
     IsRed: 0
   _sharedRedData:
     SpawnPoint: {fileID: 21090651}
-    SpawnDistance: 5
-    SpawnCount: 10
+    SpawnDistance: 10
+    SpawnCount: 100
     Health: 3
     Speed: 3
     Color: {r: 1, g: 0.32661337, b: 0, a: 1}

@@ -19,11 +19,11 @@ namespace LeoEcsHomeTask.Systems
             foreach (var entity in _bulletSpawnFilter.Value)
             {
                 ref var bulletSpawn = ref _bulletPool.Value.Get(entity);
-                var newEntity = _world.Value.NewEntity();
-                ref var damage = ref _bulletFilter.Pools.Inc1.Add(newEntity);
-                ref var view = ref _bulletFilter.Pools.Inc2.Add(newEntity);
-                ref var color = ref _bulletFilter.Pools.Inc3.Add(newEntity);
-                ref var team = ref _bulletFilter.Pools.Inc4.Add(newEntity);
+                var bulletEntity = _world.Value.NewEntity();
+                ref var damage = ref _bulletFilter.Pools.Inc1.Add(bulletEntity);
+                ref var view = ref _bulletFilter.Pools.Inc2.Add(bulletEntity);
+                ref var color = ref _bulletFilter.Pools.Inc3.Add(bulletEntity);
+                ref var team = ref _bulletFilter.Pools.Inc4.Add(bulletEntity);
 
                 (int, int) collideEntity = PackerEntityUtils.UnpackEntities(_world.Value,
                     bulletSpawn.SourceUnit.PackedEntity, bulletSpawn.TargetUnit.PackedEntity);
@@ -42,6 +42,9 @@ namespace LeoEcsHomeTask.Systems
                     position,
                     Quaternion.LookRotation(targetUnitView.View.transform.position - position)
                 );
+                
+                bullet.Init(_world.Value);
+                bullet.PackEntity(bulletEntity);
 
                 view.View = bullet.gameObject;
                 
