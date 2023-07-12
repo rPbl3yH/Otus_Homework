@@ -8,6 +8,14 @@ namespace LeoEcs.Systems
     {
         public string Path;
     }
+
+    [Serializable]
+    public class BulletData
+    {
+        public string Path;
+        public float Speed;
+        public int Damage;
+    }
     
     [Serializable]
     public class SharedData
@@ -18,7 +26,6 @@ namespace LeoEcs.Systems
         public int SpawnCount;
 
         public int Health;
-        public int Damage;
 
         public int Speed;
         public Color Color;

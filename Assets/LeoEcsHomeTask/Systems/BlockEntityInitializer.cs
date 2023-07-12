@@ -19,7 +19,6 @@ namespace LeoEcsHomeTask.Systems
         {
             EcsPool<HealthComponent> healthPool = world.GetPool<HealthComponent>();
             EcsPool<ColorComponent> colorPool = world.GetPool<ColorComponent>();
-            EcsPool<DamageComponent> damagePool = world.GetPool<DamageComponent>();
             EcsPool<ViewComponent> blockViewPool = world.GetPool<ViewComponent>();
             EcsPool<WaypointComponent> waypointPool = world.GetPool<WaypointComponent>();
             EcsPool<TeamComponent> teamPool = world.GetPool<TeamComponent>();
@@ -29,7 +28,6 @@ namespace LeoEcsHomeTask.Systems
                 var entity = world.NewEntity();
                 blockViewPool.Add(entity);
                 healthPool.Add(entity).Health = data.Health;
-                damagePool.Add(entity).DamageValue = data.Damage;
                 colorPool.Add(entity);
                 teamPool.Add(entity).IsRed = data.IsRed;
                 waypointPool.Add(entity);

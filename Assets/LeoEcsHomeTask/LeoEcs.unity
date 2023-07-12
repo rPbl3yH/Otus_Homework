@@ -550,7 +550,6 @@ MonoBehaviour:
     SpawnDistance: 5
     SpawnCount: 5
     Health: 3
-    Damage: 1
     Speed: 3
     Color: {r: 0.08018869, g: 0.6690244, b: 1, a: 1}
     IsRed: 0
@@ -559,12 +558,15 @@ MonoBehaviour:
     SpawnDistance: 5
     SpawnCount: 10
     Health: 3
-    Damage: 1
     Speed: 3
     Color: {r: 1, g: 0.32661337, b: 0, a: 1}
     IsRed: 1
   _unitData:
     Path: Cube
+  _bulletData:
+    Path: Bullet
+    Speed: 2
+    Damage: 1
 --- !u!4 &1805053374
 Transform:
   m_ObjectHideFlags: 0

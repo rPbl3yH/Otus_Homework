@@ -11,6 +11,7 @@ namespace LeoEcsHomeTask {
         [SerializeField] private SharedBlueData _sharedBlueData;
         [SerializeField] private SharedRedData _sharedRedData;
         [SerializeField] private UnitData _unitData;
+        [SerializeField] private BulletData _bulletData;
         
         void Start () {
             _world = new EcsWorld ();
@@ -22,6 +23,7 @@ namespace LeoEcsHomeTask {
                 .Add(new UnitSpawner())
                 .Add(new MovementSystem())
                 .Add(new UnitVisionSystem())
+                .Add(new BulletSpawnerSystem())
                 // register additional worlds here, for example:
                 // .AddWorld (new EcsWorld (), "events")
 #if UNITY_EDITOR
@@ -30,6 +32,7 @@ namespace LeoEcsHomeTask {
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
 #endif
                 .Inject(_unitData)
+                .Inject(_bulletData)
                 .Inject(_sharedBlueData)
                 .Inject(_sharedRedData)
                 .Init ();
