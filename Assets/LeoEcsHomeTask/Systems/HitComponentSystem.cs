@@ -9,7 +9,7 @@ namespace LeoEcsHomeTask.Systems
     {
         private readonly EcsFilterInject<Inc<DamageComponent, ViewComponent, TeamComponent>> _bulletFilter;
         private readonly EcsFilterInject<Inc<HitComponent>> _hitFilter;
-        private readonly EcsPoolInject<BulletSpawnComponent> _bulletPool;
+        private readonly EcsPoolInject<HealthComponent> _healthPool;
         private readonly EcsCustomInject<UnitData> _unitData;
         private readonly EcsCustomInject<BulletData> _bulletData;
         private readonly EcsWorldInject _world;
@@ -28,8 +28,13 @@ namespace LeoEcsHomeTask.Systems
 
                 if (bulletTeam.IsRed != unitTeam.IsRed)
                 {
+                    ref var bulletDamage = ref _bulletFilter.Pools.Inc1.Get(hitEntities.Item1);
+                    ref var unitHealth = ref _healthPool.Value.Get(hitEntities.Item2);
+
+                    unitHealth.Health -= bulletDamage.DamageValue;
+                    
                     ref var bulletView = ref _bulletFilter.Pools.Inc2.Get(hitEntities.Item1);
-                    Object.DestroyImmediate(bulletView.View.gameObject); 
+                    Object.DestroyImmediate(bulletView.View.gameObject);
                 }
 
                 _world.Value.DelEntity(entity);
