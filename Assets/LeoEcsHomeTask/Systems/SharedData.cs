@@ -12,8 +12,8 @@ namespace LeoEcs.Systems
     [Serializable]
     public class SharedData
     {
-        public int BorderX;
-        public int BorderZ;
+        public Transform SpawnPoint;
+        public int SpawnDistance;
 
         public int SpawnCount;
 

@@ -7,29 +7,45 @@ namespace LeoEcsHomeTask.Systems
 {
     public class WaypointsInitializer : IEcsInitSystem
     {
-        private readonly EcsFilterInject<Inc<WaypointComponent>> _waypointsFilter;
-        private readonly EcsCustomInject<SharedData> _data;
+        private readonly EcsFilterInject<Inc<WaypointComponent, TeamComponent>> _blockFilter;
+        private readonly EcsCustomInject<SharedBlueData> _blueData;
+        private readonly EcsCustomInject<SharedRedData> _redData;
 
         public void Init(IEcsSystems systems)
         {
-            var waypointPool = _waypointsFilter.Pools.Inc1;
+            var waypointPool = _blockFilter.Pools.Inc1;
+            var teamPool = _blockFilter.Pools.Inc2;
             
-            foreach (var entity in _waypointsFilter.Value)
+            foreach (var entity in _blockFilter.Value)
             {
-                ref WaypointComponent waypointComponent = ref waypointPool.Get(entity);
-                waypointComponent.StartPos = GetRandomPosition();
-                waypointComponent.EndPos = GetRandomPosition();
-                waypointComponent.TargetPos = waypointComponent.StartPos;
+                ref var waypoint = ref waypointPool.Get(entity);
+                ref var team = ref teamPool.Get(entity);
+
+                if (team.IsRed)
+                {
+                    waypoint.StartPos = GetPosition(_redData.Value.SpawnPoint.position, _redData.Value.SpawnDistance);
+                    waypoint.EndPos = GetPosition(_blueData.Value.SpawnPoint.position, _blueData.Value.SpawnDistance);
+                    waypoint.TargetPos = waypoint.StartPos;
+                }
+                else
+                {
+                    waypoint.StartPos = GetPosition(_blueData.Value.SpawnPoint.position, _blueData.Value.SpawnDistance);
+                    waypoint.EndPos = GetPosition(_redData.Value.SpawnPoint.position, _redData.Value.SpawnDistance);
+                    waypoint.TargetPos = waypoint.StartPos;
+                }
+               
             }
         }
 
-        private Vector3 GetRandomPosition()
+        private Vector3 GetPosition(Vector3 position, int spawnDistance)
         {
-            return new Vector3(
-                Random.Range(-_data.Value.BorderX, _data.Value.BorderX),
+            var pointPosition = position;
+            var randomOffset = new Vector3(
+                Random.Range(-spawnDistance, spawnDistance),
                 0f,
-                Random.Range(-_data.Value.BorderZ, _data.Value.BorderZ)
-            );
+                Random.Range(-spawnDistance, spawnDistance));
+
+            return pointPosition + randomOffset;
         }
     }
 }
