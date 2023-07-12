@@ -10,16 +10,16 @@ namespace LeoEcsHomeTask {
         IEcsSystems _systems;
         [SerializeField] private SharedBlueData _sharedBlueData;
         [SerializeField] private SharedRedData _sharedRedData;
+        [SerializeField] private UnitData _unitData;
         
         void Start () {
             _world = new EcsWorld ();
             _systems = new EcsSystems (_world);
             _systems
                 // register your systems here, for example:
-                .Add(new BlockInitializer())
+                .Add(new BlockEntityInitializer())
                 .Add(new WaypointsInitializer())
                 .Add(new BlockSpawner())
-                .Add(new RedBlockSpawner())
                 .Add(new MovementSystem())
                 // register additional worlds here, for example:
                 // .AddWorld (new EcsWorld (), "events")
@@ -28,6 +28,7 @@ namespace LeoEcsHomeTask {
                 // .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ("events"))
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
 #endif
+                .Inject(_unitData)
                 .Inject(_sharedBlueData)
                 .Inject(_sharedRedData)
                 .Init ();

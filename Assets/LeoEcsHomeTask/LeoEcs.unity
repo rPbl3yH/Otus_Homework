@@ -487,18 +487,22 @@ MonoBehaviour:
     BorderX: 10
     BorderZ: 10
     SpawnCount: 5
-    Path: Cube
     Health: 3
     Damage: 1
     Speed: 2
+    Color: {r: 0.08018869, g: 0.6690244, b: 1, a: 1}
+    IsRed: 0
   _sharedRedData:
     BorderX: 5
     BorderZ: 5
-    SpawnCount: 30
-    Path: Cube
+    SpawnCount: 10
     Health: 3
     Damage: 1
     Speed: 5
+    Color: {r: 1, g: 0.32661337, b: 0, a: 1}
+    IsRed: 1
+  _unitData:
+    Path: Cube
 --- !u!4 &1805053374
 Transform:
   m_ObjectHideFlags: 0

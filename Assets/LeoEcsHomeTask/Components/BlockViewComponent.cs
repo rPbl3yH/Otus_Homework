@@ -6,9 +6,4 @@ namespace LeoEcsHomeTask
     {
         public GameObject View;
     }
-
-    public struct TeamComponent
-    {
-        public bool IsRed;
-    }
 }
